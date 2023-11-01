@@ -1,0 +1,44 @@
+package myjava1;
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+import static java.lang.Math.*;
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Stack;
+import java.util.Vector;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.StringTokenizer;
+
+class Phanso{
+    private long tu;
+    private long mau;
+    Phanso(long tu, long mau){
+        this.tu = tu;
+        this.mau = mau;              
+    }
+    public long gcd(long a, long b){
+        if(b == 0) return a;
+        return gcd(b, a % b);
+    }
+   @Override
+   public String toString(){
+       long g = gcd(this.tu, this.mau);
+       return tu / g + "/" + mau / g;
+   }
+}
+
+public class Myjava1{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        long a = sc.nextLong(), b = sc.nextLong(), c = sc.nextLong(), d = sc.nextLong();
+        Phanso n = new Phanso(a * d + b * c, b * d);
+        System.out.println(n);
+    }
+}
