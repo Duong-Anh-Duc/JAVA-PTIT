@@ -1,0 +1,31 @@
+package myjava1;
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.lang.Math;
+// cách 1 hơi trâu bò 1 tí :V
+public class Myjava1 {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        ArrayList<Integer> a = new ArrayList<>(n);
+          for(int i = 0 ; i < n;i++){
+              a.add(sc.nextInt());
+          }
+        int i = 1;
+        while (i < a.size()){
+            if((a.get(i) + a.get(i - 1)) % 2 == 0){
+                a.remove(i);
+                a.remove(i - 1);
+                if(i > 1){
+                    i--;
+                }
+            }
+            else{
+                i += 1;
+            }
+        }
+        System.out.println(a.size());
+        }
+}
+// cách 2 dùng stack nhé nhanh hơn nhiều <3
