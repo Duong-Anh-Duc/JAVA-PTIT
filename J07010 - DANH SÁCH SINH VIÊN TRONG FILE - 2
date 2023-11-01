@@ -1,0 +1,50 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.lang.StringBuilder;
+class SV{
+    private String ten, lop, ns;
+    private float gpa;
+    private int msv;
+    public SV(int msv, String ten, String lop, String ns, float gpa) throws IOException, FileNotFoundException{
+        this.msv = msv;
+        this.ten = ten;
+        this.lop = lop;
+        this.ns = ns;
+        this.gpa = gpa;       
+}
+    public String getMSV(){
+        String ma = "B20DCCN" + String.format("%03d", msv);
+        return ma;
+}
+    public String getNS(){
+        StringBuilder sb = new StringBuilder(ns);
+        if(sb.charAt(1) == '/') sb.insert(0, 0);
+        if(sb.charAt(4) == '/') sb.insert(3, 0);
+        return sb.toString();
+}
+    @Override
+    public String toString(){
+        return getMSV() + " " + ten + " " + lop + " " + getNS() + " " + String.format("%.2f", gpa);
+}
+}
+public class Myjava1{
+   public static void main(String[] args) throws IOException, FileNotFoundException{
+        Scanner sc = new Scanner(new File("SV.in"));
+        int t = Integer.parseInt(sc.nextLine());
+        ArrayList<SV> a = new ArrayList<>();
+        for(int i = 1 ; i <= t;i++){
+            int msv = i;
+            String ten = sc.nextLine(), lop = sc.nextLine(), ns = sc.nextLine();
+            float gpa = Float.parseFloat(sc.nextLine());
+            SV tmp = new SV(msv, ten, lop, ns, gpa);
+            a.add(tmp);
+        }
+        for(SV x : a){
+            System.out.println(x);
+        }
+    }
+}
