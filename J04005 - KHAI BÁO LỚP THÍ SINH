@@ -1,0 +1,49 @@
+package myjava1;
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+import static java.lang.Math.*;
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Stack;
+import java.util.Vector;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.StringTokenizer;
+
+class ThiSinh{
+    private String ten, ns;
+    private double m1, m2, m3;
+    ThiSinh(String ten, String ns, double m1, double m2, double m3){
+        this.ten = ten;
+        this.ns = ns;
+        this.m1 = m1;
+        this.m2 = m2;
+        this.m3 = m3;
+    }
+    public double TongDiem(){
+        return m1 + m2 + m3;
+    }
+    @Override
+    public String toString(){
+        return ten + " " + ns + " " + String.format("%.1f", TongDiem());
+    }
+}
+
+public class Myjava1{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String ten = sc.nextLine();
+        String ns = sc.nextLine();
+        double m1 = sc.nextDouble();
+        double m2 = sc.nextDouble();
+        double m3 = sc.nextDouble();
+        ThiSinh a = new ThiSinh(ten, ns, m1, m2, m3);
+        System.out.println(a);
+}
+}
