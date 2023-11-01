@@ -1,0 +1,73 @@
+package myjava1;
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+import static java.lang.Math.*;
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Stack;
+import java.util.InputMismatchException;
+import java.util.Vector;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.StringTokenizer;
+class Point{
+    private double x;
+    private double y;
+    Point(){
+        x = 1;
+        y = 1;      
+    }
+    Point(double x, double y){
+        this.x = x;
+        this.y = y;
+    }
+    Point(Point a){
+        this.x = a.x;
+        this.y = a.y;
+    }
+    public double getX(){
+        return this.x;
+    }
+    public double getY(){
+        return this.y;
+    }
+    double distance(Point p){
+        return sqrt(pow(this.x - p.x, 2) + pow(this.y - p.y, 2));
+    }
+    double distance(Point a, Point b){
+        return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
+    }
+    @Override
+    public String toString(){
+        return x + " " + y;
+    }
+}
+public class Myjava1{
+    public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int t = sc.nextInt();
+    while(t-- > 0){
+    double x1 = sc.nextDouble(), y1 = sc.nextDouble();
+    double x2 = sc.nextDouble(), y2 = sc.nextDouble();
+    double x3 = sc.nextDouble(), y3 = sc.nextDouble();
+    Point a = new Point(x1, y1);
+    Point b = new Point(x2, y2);
+    Point c = new Point(x3, y3);
+    double canh1 = a.distance(b);
+    double canh2 = b.distance(c);
+    double canh3 = c.distance(a);
+    if(canh1 + canh2 <= canh3 || canh1 + canh3 <= canh2 || canh2 + canh3 <= canh1){
+        System.out.println("INVALID");
+    }
+    else{
+        System.out.printf("%.3f\n", canh1 + canh2 + canh3);
+    }
+}
+    }
+}
