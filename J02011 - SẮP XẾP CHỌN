@@ -1,0 +1,33 @@
+package myjava1;
+
+import java.util.Scanner;
+
+import java.lang.Math;
+public class Myjava1 {
+   
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int a[] = new int[n];
+        for(int i = 0 ; i < n;i++){
+            a[i] = sc.nextInt();
+        }
+            for(int i = 0 ; i < n - 1;i++){ 
+                int min_pos = a[i], idx = i;
+            for(int j = i + 1 ; j < n ;j++){
+                if(a[j] < min_pos){
+                   min_pos = a[j];
+                   idx = j;
+                }
+            }
+                int tmp = a[i];
+                a[i] = a[idx];
+                a[idx] = tmp;
+            System.out.print("Buoc " + (i + 1) + ": ");
+            for(int k = 0 ; k < n;k++){
+                System.out.print(a[k] + " ");
+            }
+             System.out.println();
+            }
+        }
+}
