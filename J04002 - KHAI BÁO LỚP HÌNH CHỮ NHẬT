@@ -1,0 +1,61 @@
+package myjava1;
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+import static java.lang.Math.*;
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Stack;
+import java.util.Vector;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.StringTokenizer;
+
+class Rectabge{
+    private double width;
+    private double hight;
+    private String Color;
+    public Rectabge(){
+        width = 1;
+        hight = 1;
+    }
+    public Rectabge(double width, double hight, String Color){
+        this.width = width;
+        this.hight = hight;
+        this.Color = Color;
+    }
+    public String getColor(){
+        return Color.substring(0, 1).toUpperCase() + Color.substring(1).toLowerCase();
+     }
+    public double findArea(){
+        return hight * width;
+    }
+    public double findPerimeter(){
+        return (hight + width) * 2;
+    }
+    @Override
+    public String toString(){
+        return String.format("%d %d %s", (int)findPerimeter(), (int)findArea(),getColor());
+    }
+}
+
+public class Myjava1{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        double w = sc.nextDouble();
+        double h = sc.nextDouble();
+        String c = sc.next();
+        if(w > 0 && h > 0){
+            Rectabge a = new Rectabge(w, h, c);
+            System.out.println(a);
+        }
+        else{
+            System.out.println("INVALID");
+        }
+    }
+}
