@@ -1,0 +1,47 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+public class Myjava1{
+      public static Vector<Integer> v = new Vector<Integer>();
+      public static Vector<Vector<Integer>> ans = new Vector<Vector<Integer>>();
+      public static Integer a[];
+      public static int n;
+      public static void Try(int i){
+          for(int j = i + 1 ; j <= n;j++){
+              if(a[j] > a[i]){
+                  v.add(a[j]);
+                  if(v.size() > 1){
+                      ans.add(new Vector<>(v));
+                  }
+                  Try(j);
+                  v.remove(v.size() - 1);
+              }
+          }
+      }
+      public static void main(String[] args) throws IOException, FileNotFoundException{
+       Scanner sc = new Scanner(new File("DAYSO.in"));
+       n = sc.nextInt();
+       a = new Integer[n + 1];
+       a[0] = 0;
+       for(int i = 1 ; i <= n;i++){
+           a[i] = sc.nextInt();
+       }
+       Try(0);
+       ans.sort((list1, list2) -> {
+           for(int i = 0 ; i < min(list1.size(), list2.size());i++){
+               int tmp = list1.get(i).toString().compareTo(list2.get(i).toString());
+               if(tmp != 0) return tmp;
+           }
+        return Integer.compare(list1.size(), list2.size());
+       });   
+       for(Vector<Integer> tmp : ans){
+            for(int x : tmp){
+                System.out.print(x + " ");
+            }
+            System.out.println("");
+       }
+    }
+}
