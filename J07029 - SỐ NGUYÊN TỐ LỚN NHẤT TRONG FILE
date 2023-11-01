@@ -1,0 +1,39 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+public class Myjava1{
+   public static boolean prime [] = new boolean[1000001];
+   public static void sang(){
+       for(int i = 1 ; i <= 1000000;i++){
+           prime[i] = true;
+       }
+       prime[0] = prime[1] = false;
+       for(int i = 2 ; i <= 1000;i++){
+           if(prime[i]){
+           for(int j = i * i ; j <= 1000000;j+= i){
+               prime[j] = false;
+           }
+       }
+   }
+   }
+   public static void main(String[] args) throws StreamCorruptedException, IOException, FileNotFoundException, ClassNotFoundException{
+   sang();
+   ObjectInputStream ois = new ObjectInputStream(new FileInputStream("DATA.in"));
+   ArrayList<Integer> a = (ArrayList<Integer>) ois.readObject();
+   int []cnt = new int[1000001];
+   for(Integer i : a){
+       if(prime[i]) cnt[i]++;
+   }
+   int check = 0;
+   for(int i = 1000000 ; i >= 2;i--){
+       if(check == 10) break;
+       if(prime[i] && cnt[i] > 0){
+           check++;
+           System.out.println(i + " " + cnt[i]);
+       }
+   }
+   }
+  }
