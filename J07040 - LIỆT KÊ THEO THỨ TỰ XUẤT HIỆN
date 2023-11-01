@@ -1,0 +1,33 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+public class Myjava1{
+   public static void main(String[] args) throws StreamCorruptedException, IOException, FileNotFoundException, ClassNotFoundException{
+       ObjectInputStream ois1 = new ObjectInputStream(new FileInputStream("NHIPHAN.in"));
+       ArrayList<String> a = (ArrayList<String>) ois1.readObject();
+       TreeSet<String> set = new TreeSet<String>();
+       for(String x : a){
+           String arr[] = x.trim().toLowerCase().split("\\s+");
+           for(String ans : arr){
+               set.add(ans);
+           }
+       }
+       Scanner sc = new Scanner(new File("VANBAN.in"));
+       ArrayList<String> b = new ArrayList<String>();
+       while(sc.hasNext()){
+           String arr[] = sc.nextLine().trim().toLowerCase().split("\\s+");
+           for(String x : arr){
+               b.add(x);
+           }       
+       }
+       for(String x : b){
+           if(set.contains(x)){
+               System.out.println(x);
+               set.remove(x);
+           }
+       }
+   }
+  }
