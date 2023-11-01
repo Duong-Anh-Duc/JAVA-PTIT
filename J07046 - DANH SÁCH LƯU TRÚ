@@ -1,0 +1,52 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
+class KH{
+    private int mkh;
+    private String ten, mp, n1, n2;
+    public KH(int mkh, String ten, String mp, String n1, String n2) throws IOException{
+        this.mkh = mkh;
+        this.ten = ten;
+        this.mp = mp;
+        this.n1 = n1;
+        this.n2 = n2;
+    }
+    public String getMKH(){
+    return "KH" + String.format("%02d", mkh);
+    }
+    public long SNLT(){
+        String y1 = n1.substring(6), d1 = n1.substring(0, 2), m1 = n1.substring(3, 5);
+        String y2 = n2.substring(6), d2 = n2.substring(0, 2), m2 = n2.substring(3, 5);
+        LocalDate st = LocalDate.of(Integer.parseInt(y1), Integer.parseInt(m1), Integer.parseInt(d1));
+        LocalDate en = LocalDate.of(Integer.parseInt(y2), Integer.parseInt(m2), Integer.parseInt(d2));
+        return ChronoUnit.DAYS.between(st, en);
+    }
+    @Override
+    public String toString(){
+        return getMKH() + " " + ten + " " + mp + " " + SNLT();
+    }
+}
+class Sort implements Comparator<KH>{
+    public int compare(KH a, KH b){
+        return (int) (b.SNLT() - a.SNLT());
+}
+}
+public class Myjava1{
+       public static void main(String[] args) throws IOException, FileNotFoundException{
+       Scanner sc = new Scanner(new File("KHACH.in"));
+       int n = Integer.parseInt(sc.nextLine());
+       ArrayList<KH> a = new ArrayList<KH>();
+       for(int i = 1 ; i <= n;i++){
+           a.add(new KH(i, sc.nextLine(), sc.nextLine(), sc.nextLine(), sc.nextLine()));
+       } 
+       Collections.sort(a, new Sort());
+       for(KH x : a){
+           System.out.println(x);
+       }
+       }          
+    }
