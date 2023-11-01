@@ -1,0 +1,27 @@
+package myjava1;
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.lang.Math;
+import java.math.BigInteger;
+import java.util.HashSet;
+import java.util.Collections;
+public class Myjava1 {
+    public static void change(String s){
+        String arr[] = s.split("\\s+");
+        for(String x : arr){
+            StringBuilder sb = new StringBuilder(x);
+            System.out.print(sb.reverse() + " ");
+        }
+        System.out.println("");
+    }
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        sc.nextLine();
+        while(t-- > 0){
+        String s = sc.nextLine();
+        change(s);
+    }
+  }
+}
