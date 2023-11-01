@@ -1,0 +1,25 @@
+package myjava1;
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.lang.Math;
+import java.math.BigInteger;
+import java.util.HashSet;
+import java.util.Collections;
+public class Myjava1 {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while(t-- > 0){
+            BigInteger a = sc.nextBigInteger();
+            BigInteger b = sc.nextBigInteger();
+            BigInteger c = a.subtract(b).abs();
+            StringBuilder sb = new StringBuilder(c.toString());
+            int maxlength = Math.max(a.toString().length(), b.toString().length());
+            while(sb.length() < maxlength){
+                sb = sb.insert(0, '0');
+            }
+            System.out.println(sb);
+        }
+}
+}
