@@ -1,0 +1,31 @@
+package myjava1;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.lang.Math;
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Stack;
+import java.util.Vector;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.StringTokenizer;
+public class Myjava1 {
+    public static void main(String[] args) throws FileNotFoundException{
+        Scanner sc = new Scanner(new File("DATA.in"));
+        String s = sc.nextLine();
+        while(s.length() > 1){
+            BigInteger a = new BigInteger(s.substring(0, s.length() / 2));
+            BigInteger b = new BigInteger(s.substring(s.length() / 2));
+            System.out.println(a.add(b));
+            s = a.add(b).toString();
+        }
+}
+}
