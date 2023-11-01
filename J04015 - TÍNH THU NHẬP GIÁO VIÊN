@@ -1,0 +1,57 @@
+package myjava1;
+import java.util.*;
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+import static java.lang.Math.*;
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Stack;
+import java.util.InputMismatchException;
+import java.util.Vector;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.StringTokenizer;
+// lưu ý khi code bạn có thể tách thành các class khác nhau sau đó nén thành file zip nộp lên vẫn okela còn mình quen làm 1 file nên mình làm zị ^^.
+class GiaoVien{
+     private String mg, ten, cv;
+     private long luong, hs, t;
+     GiaoVien(String mg, String ten, long luong, long hs, long t,String cv){
+         this.cv = cv;
+         this.mg = mg;
+         this.ten = ten;
+         this.luong = luong;
+         this.hs = hs;
+         this.t = t;
+     }
+     public long xuly(){
+         String heso = mg.substring(2);
+         long hesoluong = 0;
+         for(char x : heso.toCharArray()){
+             hesoluong = hesoluong * 10 + (x - '0');
+         }
+         hs = hesoluong;
+         cv = mg.substring(0, 2);
+         if(cv.compareTo("HT") == 0) t = 2000000;
+         if(cv.compareTo("HP") == 0) t = 900000;
+         if(cv.compareTo("GV") == 0) t = 500000;
+         return luong * hesoluong + t;
+     }
+     @Override
+     public String toString(){
+         return mg + " " + ten + " " + hs + " " + t + " " + xuly();
+     }
+}
+public class Myjava1{
+    public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    GiaoVien a = new GiaoVien(sc.nextLine(), sc.nextLine(), sc.nextLong(), 0, 0, "");
+      a.xuly();
+    System.out.println(a);
+ }
+}
