@@ -1,0 +1,42 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+public class Myjava1{
+   public static boolean prime [] = new boolean[1000001];
+   public static void sang(){
+       for(int i = 1 ; i <= 1000000;i++){
+           prime[i] = true;
+       }
+       prime[0] = prime[1] = false;
+       for(int i = 2 ; i <= 1000;i++){
+           if(prime[i]){
+           for(int j = i * i ; j <= 1000000;j += i){
+               prime[j] = false;
+           }
+       }
+   }
+   }
+   public static void main(String[] args) throws StreamCorruptedException, IOException, FileNotFoundException, ClassNotFoundException{
+   sang();
+   ObjectInputStream ois1 = new ObjectInputStream(new FileInputStream("DATA1.in"));
+   ArrayList<Integer> a = (ArrayList<Integer>) ois1.readObject();
+   TreeSet<Integer> set = new TreeSet<Integer>();
+   for(Integer x : a){
+       if(prime[x]) set.add(x);
+   }
+   ObjectInputStream ois2 = new ObjectInputStream(new FileInputStream("DATA2.in"));
+   ArrayList<Integer> b = (ArrayList<Integer>) ois2.readObject();
+   TreeSet<Integer> set1 = new TreeSet<Integer>();
+   for(Integer x : b){
+       if(prime[x]) set1.add(x);
+   }
+   for(Integer x : set){
+       if(set1.contains(1000000 - x)){
+           if(x < 1000000 - x) System.out.println(x + " " + (1000000 - x));
+       }
+   }
+   }
+  }
