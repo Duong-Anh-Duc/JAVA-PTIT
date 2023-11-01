@@ -1,0 +1,27 @@
+package myjava1;
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.lang.Math;
+public class Myjava1 {
+    public static int[] cnt = new int[250];
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int a[] = new int[n];
+        for(int i = 0 ; i < n;i++){
+            a[i] = sc.nextInt();
+            cnt[a[i]] = 1;
+        }
+        boolean check = true;
+        for(int i = 1; i <= a[n - 1];i++){
+            if(cnt[i] == 0){
+                System.out.println(i);
+                check = false;
+            }
+        }
+        if(check){
+            System.out.println("Excellent!");
+        }
+}
+}
