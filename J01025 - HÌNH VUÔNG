@@ -3,10 +3,7 @@ package myjava1;
 import java.util.Scanner;
 
 import java.lang.Math;
-// 01
-// 101
-// 01101
-// 10101101
+
 public class Myjava1 {
   
     public static void main(String[] args){
