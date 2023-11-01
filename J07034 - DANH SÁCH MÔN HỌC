@@ -1,0 +1,44 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+class MH{
+    private String mmh, tm;
+    private int stc;
+    public MH(String mmh, String tm, int stc) throws ClassNotFoundException, IOException{
+        this.mmh = mmh;
+        this.tm = tm;
+        this.stc = stc;
+    }
+    public String getTM(){
+        return tm;
+    }
+    @Override
+    public String toString(){
+        return mmh + " " + tm + " " + stc;
+    }
+}
+class Sort implements Comparator<MH>{
+    public int compare(MH a, MH b){
+        return a.getTM().compareTo(b.getTM());
+    }
+}
+public class Myjava1{
+   public static void main(String[] args) throws StreamCorruptedException, IOException, FileNotFoundException, ClassNotFoundException{
+       Scanner sc = new Scanner(new File("MONHOC.in"));
+       int t = Integer.parseInt(sc.nextLine());
+       ArrayList<MH> a = new ArrayList<MH>();
+       while(t-- > 0){
+           String mmh = sc.nextLine(), tmh = sc.nextLine();
+           int stc = Integer.parseInt(sc.nextLine());
+           MH tmp = new MH(mmh, tmh, stc);
+           a.add(tmp);
+       }
+       Collections.sort(a, new Sort());
+       for(MH x : a){
+           System.out.println(x);
+       }
+   }
+  }
