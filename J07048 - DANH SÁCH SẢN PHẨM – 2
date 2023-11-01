@@ -1,0 +1,45 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
+class SP implements Comparable<SP>{
+    private String msp, tsp, bh;
+    private int gb;
+    public SP(String msp, String tsp, int gb, String bh) throws IOException{
+        this.msp = msp; this.tsp = tsp; this.gb = gb; this.bh = bh;
+    }
+    public int getGb() {
+        return gb;
+    } 
+
+    public String getMsp() {
+        return msp;
+    }
+    @Override
+    public String toString(){
+        return msp + " " + tsp + " " + gb + " " + bh;
+    }
+    @Override
+    public int compareTo(SP orther) {
+        if(getGb() != orther.getGb()) return orther.getGb() - getGb();
+        return msp.compareTo(orther.msp);
+    }
+}
+public class Myjava1{
+       public static void main(String[] args) throws IOException, FileNotFoundException{
+       Scanner sc = new Scanner(new File("SANPHAM.in"));
+       int n = Integer.parseInt(sc.nextLine());
+       ArrayList<SP> a = new ArrayList<>();
+       while(n-- > 0){
+           a.add(new SP(sc.nextLine(), sc.nextLine(), Integer.parseInt(sc.nextLine()), sc.nextLine()));        
+       }
+       Collections.sort(a);   
+       for(SP x : a){
+           System.out.println(x);
+       }
+   }       
+ }
