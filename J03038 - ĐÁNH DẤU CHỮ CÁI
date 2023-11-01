@@ -1,0 +1,23 @@
+package myjava1;
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.lang.Math;
+import java.math.BigInteger;
+import java.util.HashSet;
+import java.util.Collections;
+public class Myjava1 {
+    public static int cnt[] = new int[260];
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        String s =sc.nextLine();
+        int size = 0;
+        for(char x : s.toCharArray()){
+            if(cnt[x] == 0){
+                size++;
+            }
+            cnt[x] = 1;
+        }
+        System.out.println(size);
+  }
+}
