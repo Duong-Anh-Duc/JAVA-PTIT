@@ -1,0 +1,45 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+public class Myjava1{
+   public static boolean check(int n){
+       String s = Integer.toString(n);
+       for(char x : s.toCharArray()){
+           if(x == '0' || x == '2' || x == '4' || x == '6' || x == '8') return false;
+       }
+       StringBuilder t = new StringBuilder(s);
+       return s.equals(t.reverse().toString()) == true && s.length() > 1 && s.length() % 2 == 1;
+   }
+   public static void main(String[] args) throws StreamCorruptedException, IOException, FileNotFoundException, ClassNotFoundException{
+   ObjectInputStream ois1 = new ObjectInputStream(new FileInputStream("DATA1.in"));
+   ArrayList<Integer> a = (ArrayList<Integer>) ois1.readObject();
+   TreeSet<Integer> set = new TreeSet<Integer>();
+   int cnt[] = new int[1000001];
+   for(Integer x : a){
+       cnt[x]++;
+      if(check(x)){
+          set.add(x);
+      }
+   }
+   ObjectInputStream ois2 = new ObjectInputStream(new FileInputStream("DATA2.in"));
+   ArrayList<Integer> b = (ArrayList<Integer>) ois2.readObject();
+   TreeSet<Integer> set1 = new TreeSet<Integer>();
+   for(Integer x : b){
+       cnt[x]++;
+       if(check(x)){
+         set1.add(x);
+       }
+   }
+   int check = 0;
+   for(Integer x : set){
+       if(check == 10) break;
+       if(set1.contains(x)){
+           System.out.println(x + " " + cnt[x]);
+           check++;
+       }
+   }
+   }
+  }
