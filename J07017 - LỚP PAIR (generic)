@@ -1,0 +1,84 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+// /Users/anhduc/NetBeansProjects/myjava1/src/myjava1/DATA.in
+class Pair<a, b>{
+    private Integer a;
+    private Integer b;
+    public Pair(Integer a, Integer b){
+        this.a = a;
+        this.b = b;
+    }
+    public boolean isPrime(){
+        for(int i = 2 ; i <= sqrt(a);i++){
+            if(a % i == 0){
+                return false;
+            }
+        }
+        for(int i = 2 ; i <= sqrt(b);i++){
+            if(b % i == 0){
+                return false;
+            }
+        }
+        return a > 1 && b > 1;
+    }
+    @Override
+    public String toString(){
+       return a + " " + b;
+    }
+}
+public class Myjava1{
+   public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(new File("DATA.in"));
+        int t = sc.nextInt();
+        while(t-->0){
+            int n = sc.nextInt();
+            boolean check = false;
+            for(int i = 2; i <= 2*Math.sqrt(n); i++){
+                Pair<Integer, Integer> p = new Pair<>(i, n-i);
+                if(p.isPrime()){
+                    System.out.println(p);
+                    check = true;
+                    break; 
+                }
+            }
+            if(!check) System.out.println(-1);
+        }
+    }
+   public static void main5765212(String[] args) throws IOException {
+        Scanner sc = new Scanner(new File("DATA.in"));
+        int t = sc.nextInt();
+        while(t-->0){
+            int n = sc.nextInt();
+            boolean check = false;
+            for(int i = 2; i <= 2*Math.sqrt(n); i++){
+                Pair<Integer, Integer> p = new Pair<>(i, n-i);
+                if(p.isPrime()){
+                    System.out.println(p);
+                    check = true;
+                    break; 
+                }
+            }
+            if(!check) System.out.println(-1);
+        }
+    }
+   public static void main220057(String[] args) throws IOException {
+        Scanner sc = new Scanner(new File("DATA.in"));
+        int t = sc.nextInt();
+        while(t-->0){
+            int n = sc.nextInt();
+            boolean check = false;
+            for(int i = 2; i <= 2*Math.sqrt(n); i++){
+                Pair<Integer, Integer> p = new Pair<>(i, n-i);
+                if(p.isPrime()){
+                    System.out.println(p);
+                    check = true;
+                    break; 
+                }
+            }
+            if(!check) System.out.println(-1);
+        }
+    }
+}
+
