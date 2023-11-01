@@ -1,0 +1,37 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+class WordSet{
+    private TreeSet<String> set;
+    public WordSet(String s) throws FileNotFoundException{
+        Scanner sc = new Scanner(new File("VANBAN.in"));
+        set = new TreeSet<>();
+        while(sc.hasNext()){
+           String ans = sc.nextLine();
+           String arr[] = ans.toLowerCase().split("\\s+");
+           for(String x : arr){
+               set.add(x);
+           }
+        }
+    }
+    @Override
+    public String toString(){
+        String res = "";
+        for(String x : set){
+            res += x + '\n';
+        }
+        return res;
+    }
+    
+}
+public class Myjava1{
+    public static void main(String[] args) throws IOException {
+        WordSet ws = new WordSet("VANBAN.in");
+        System.out.println(ws);
+    }
+    public static void main830949(String[] args) throws IOException {
+        WordSet ws = new WordSet("VANBAN.in");
+        System.out.println(ws);
+    }
+}
