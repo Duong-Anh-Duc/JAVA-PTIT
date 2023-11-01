@@ -1,0 +1,28 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+public class Myjava1{
+    public static void main(String[] args) throws FileNotFoundException{
+        Scanner sc = new Scanner(new File("DATA.in"));
+        long sum = 0;
+        TreeMap<Integer, Integer> mp = new TreeMap<>();
+        while(sc.hasNext()){
+            String s = sc.next();
+            try{
+                if(!mp.containsKey(Integer.parseInt(s))){
+                    mp.put(Integer.parseInt(s), 1);
+                }
+                else{
+                    mp.put(Integer.parseInt(s), mp.get(Integer.parseInt(s)) + 1);
+                }
+            } catch(Exception e){               
+            }
+        }
+        for(Map.Entry<Integer, Integer> entry : mp.entrySet()){
+            int key = entry.getKey();
+            int value = entry.getValue();
+            System.out.println(key + " " + value);
+    }
+}
+}
