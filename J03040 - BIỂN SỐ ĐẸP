@@ -1,0 +1,52 @@
+package myjava1;
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.lang.Math;
+import java.math.BigInteger;
+import java.util.HashSet;
+import java.util.Collections;
+public class Myjava1 {
+    public static boolean tangchat(String s){
+        for(int i = 1 ; i < s.length();i++){
+            if((s.charAt(i - 1) - '0') >= (s.charAt(i) - '0')) return false;
+        }
+        return true;
+    }
+    public static boolean bn1(String s){
+        int cnt = 0;
+        for(int i = 1 ; i < s.length() - 1;i++){
+            if(s.charAt(i) == s.charAt(i + 1)) ++cnt;
+        }
+        return cnt == s.length() - 1;
+    }
+    public static boolean bn2(String s){
+     if((s.charAt(3) == s.charAt(4)) && ((s.charAt(0) == s.charAt(1)) && (s.charAt(1) == s.charAt(2)))) return true;
+     return false;
+    }
+    public static boolean lp(String s){
+        for(char x : s.toCharArray()){
+            if(x != '8' && x != '6') return false;
+        }
+        return true;
+    }
+    public static String change(String s){
+        String ans = s.substring(5, 8) + s.substring(9);
+        return ans;
+    }
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        sc.nextLine();
+        while(t-- > 0){
+            String s = sc.nextLine();
+            String ans = change(s);
+            if(bn1(ans) || bn2(ans) || lp(ans) || tangchat(ans)){
+                System.out.println("YES");
+            }
+            else{
+                System.out.println("NO");
+            }
+        }
+  }
+}
