@@ -1,0 +1,19 @@
+package myjava1;
+
+import java.util.Scanner;
+import java.lang.Math;
+public class Myjava1 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while(t-- > 0){
+         int n = sc.nextInt(), h = sc.nextInt();
+         for(int i = 1 ; i < n;i++){
+             System.out.printf("%.6f ", (double)(1.00 * h * Math.sqrt(1.00 * i / n)));
+         }
+            System.out.println("");
+        }
+      
+}
+}
+    
