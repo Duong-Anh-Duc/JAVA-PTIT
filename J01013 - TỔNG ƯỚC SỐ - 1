@@ -1,0 +1,40 @@
+package myjava1;
+
+import java.util.Scanner;
+
+import java.lang.Math;
+public class Myjava1 {
+    public static int[] prime = new int[2000001];
+    public static void sang(){
+        for(int i = 0 ; i <= 2000000;i++){
+            prime[i] = 0;
+        }
+        prime[0] = prime[1] = 1;
+        for(int i = 2 ; i <= Math.sqrt(2000000);i++){
+            if(prime[i] == 0){
+                for(int j = i * i ; j <= 2000000;j += i){
+                    prime[j] = i;
+                }
+            }
+        }
+        for(int i = 0 ; i <= 2000000;i++){
+            if(prime[i] == 0) prime[i] = i;
+        }
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        sang();
+        int t = sc.nextInt();
+        long sum = 0;
+        while(t-- > 0){
+            int n = sc.nextInt();
+            int sum1 = 0;
+            while(n > 1){
+                sum1 += prime[n];
+                n /= prime[n];
+            }
+            sum += sum1;
+        }
+        System.out.println(sum);
+        }
+ }
