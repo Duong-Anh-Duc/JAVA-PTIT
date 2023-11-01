@@ -1,0 +1,75 @@
+import static java.lang.Character.isDigit;
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+import static java.lang.Math.*;
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Stack;
+import java.util.InputMismatchException;
+import java.util.Vector;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.Set;
+import java.util.StringTokenizer;
+class MH{
+    private String tmh, dvt, mmh;
+    private int tt;
+    private int gm, gb;
+    MH(int tt, String mmh, String tmh, String dvt, int gm, int gb){
+        this.tt = tt;
+        this.mmh = mmh;
+        this.tmh = tmh;
+        this.dvt = dvt;
+        this.gm = gm;
+        this.gb = gb;
+    }
+    public int gettt(){
+        return tt;
+    }
+    public int getLN(){
+        return gb - gm;
+    }
+    public String change(){
+        mmh = "MH" + String.format("%03d", tt);
+        return mmh;
+    }
+    @Override
+    public String toString(){
+        return change() + " " + tmh + " " + dvt + " " + gm + " " + gb + " " + getLN();
+    }
+}
+
+// Urge: Thuc duc
+// Admire: Than phuc
+// Catch up: Kip thoi gian
+public class JavaApplication6 {
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.nextLine();
+        MH a[] = new MH[n];
+        for(int i = 0 ; i < n;i++){
+            a[i] = new MH(i + 1, "", sc.nextLine(), sc.nextLine(), sc.nextInt(), sc.nextInt());
+            sc.nextLine();
+        }
+        Arrays.sort(a, new Comparator<MH>(){
+        @Override
+            public int compare(MH o1, MH o2){
+                if(o1.getLN() != o2.getLN()){
+                    return o2.getLN() - o1.getLN();
+                }
+                return o1.gettt() - o2.gettt();
+            }
+        });
+        for(int i = 0 ; i < n;i++){
+            System.out.println(a[i]);
+        }
+    }
+}
