@@ -1,0 +1,51 @@
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+import static java.lang.Math.*;
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Stack;
+import java.util.InputMismatchException;
+import java.util.Vector;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.StringTokenizer;
+class Time{
+    public int gio;
+    public int phut;
+    public int giay;
+    Time(int gio, int phut, int giay){
+        this.gio = gio;
+        this.phut = phut;
+        this.giay = giay;
+    }
+    @Override
+    public String toString(){
+        return gio + " " + phut + " " + giay;
+    }
+}
+public class JavaApplication6 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        Vector<Time> v = new Vector<Time>();
+        for(int i = 0 ; i < n;i++){
+            Time tmp = new Time(sc.nextInt(), sc.nextInt(), sc.nextInt());
+            v.add(tmp);
+        }
+        Collections.sort(v, new Comparator<Time>(){
+            @Override
+            public int compare(Time a, Time b) {
+             return (a.gio * 3600 + a.phut * 60 + a.giay) - (b.gio * 3600 + b.phut * 60 + b.giay);
+            }
+        });
+        for(Time a : v){
+            System.out.println(a.gio + " " + a.phut + " " + a.giay);
+        }
+    }
+}
