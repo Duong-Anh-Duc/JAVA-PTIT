@@ -1,0 +1,24 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+public class Myjava1{
+   public static void main(String[] args) throws FileNotFoundException{
+        Scanner sc = new Scanner(new File("DATA.in"));
+        ArrayList<String> a = new ArrayList<String>();
+        while(sc.hasNext()){
+            String s = sc.next();
+            try{
+                int n = Integer.parseInt(s);
+            } catch(Exception e){
+                a.add(s);
+            }
+        }
+        Collections.sort(a);
+        for(String x : a){
+            System.out.print(x + " ");
+        }
+        }
+  }
