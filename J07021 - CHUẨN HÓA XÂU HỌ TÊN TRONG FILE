@@ -1,0 +1,24 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+public class Myjava1{
+   public static String change(String s){
+       StringBuilder sb = new StringBuilder(s);
+       return sb.substring(0, 1).toUpperCase() + sb.substring(1).toLowerCase();
+   }
+   public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException{
+        Scanner sc = new Scanner(new File("DATA.in"));
+        while(sc.hasNext()){
+            String s = sc.nextLine();
+            if(s.equals("END")) break;
+            String []arr = s.trim().split("\\s+");
+            for(String x : arr){
+                System.out.print(change(x) + " ");
+            }
+            System.out.println("");
+        }
+    }
+}
