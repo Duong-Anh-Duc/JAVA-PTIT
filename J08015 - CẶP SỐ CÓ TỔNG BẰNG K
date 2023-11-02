@@ -1,0 +1,46 @@
+package myjava1;
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.lang.Math;
+import java.math.BigInteger;
+import java.util.HashSet;
+import java.util.Collections;
+import java.util.HashMap;
+public class Myjava1 {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while(t-- > 0){
+            int n = sc.nextInt(), k = sc.nextInt();
+            HashMap<Long, Long> hm = new HashMap<>();
+            long a[] = new long[n];
+            for(int i = 0 ; i < n;i++){
+                a[i] = sc.nextLong();
+                if(!hm.containsKey(a[i])){
+                    hm.put(a[i], (long)1);
+                }
+                else{
+                    hm.put(a[i], hm.get(a[i]) + 1);
+                }
+            }
+            long sum = 0;
+            for(int i = 0 ; i < n;i++){
+               if(a[i] != k - a[i]){
+                   if(hm.containsKey(a[i]) && hm.containsKey(k - a[i])){
+                   sum += hm.get(a[i]) * hm.get(k - a[i]);
+                   hm.remove(a[i]);
+                   hm.remove(k - a[i]);     
+               }
+               }
+               else{
+                   if(hm.containsKey(a[i])){
+                   sum += (hm.get(a[i]) * (hm.get(a[i]) - 1) / 2);
+                   hm.remove(a[i]);
+               }
+               }
+            }
+            System.out.println(sum);
+        }
+  }
+}
