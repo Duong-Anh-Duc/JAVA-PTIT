@@ -1,0 +1,54 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.math.*;
+class XH{
+    private String mmh;
+    private long nhap;
+
+    public XH(String mmh, long nhap) {
+        this.mmh = mmh;
+        this.nhap = nhap;
+    }
+    public long getXuat(){
+      if(mmh.charAt(0) == 'A') return round(nhap * 1f / 100 * 60);
+      return round(nhap * 1f / 100 * 70);
+    }
+    public long getDg(){
+        if(mmh.charAt(mmh.length() - 1) == 'Y') return 110000;
+        return 135000;
+    }
+    public long getTien(){
+        return getXuat() * getDg();
+    }
+    public long getThue(){
+        char x = mmh.charAt(0), y = mmh.charAt(mmh.length() - 1);
+        if(x == 'A' && y == 'Y') return getTien() / 100 * 8;
+        else if(x == 'A' && y == 'N') return getTien() / 100 * 11;
+        else if(x == 'B' && y == 'Y') return getTien() / 100 * 17;
+        else return getTien() / 100 * 22;
+    }
+    @Override
+    public String toString(){
+        return mmh + " " + nhap + " " + getXuat() + " " + getDg() + " " + getTien() + " " + getThue();
+    }
+}
+public class Myjava1{
+     
+     public static void main(String[] args) throws IOException, ClassNotFoundException {
+     Scanner sc = new Scanner(System.in);
+     //Scanner sc = new Scanner(new File("/Users/anhduc/NetBeansProjects/myjava1/src/myjava1/DATA.in"));
+     int n = Integer.parseInt(sc.nextLine());
+     ArrayList<XH> a = new ArrayList<>();
+     for(int i = 1 ; i <= n;i++){
+         a.add(new XH(sc.nextLine(), Long.parseLong(sc.nextLine())));
+     }
+     for(XH x : a){
+         System.out.println(x);
+     }
+    }
+ }
