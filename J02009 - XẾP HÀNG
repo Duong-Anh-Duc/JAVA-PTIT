@@ -1,0 +1,48 @@
+package myjava1;
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.lang.Math;
+import java.math.BigInteger;
+import java.util.HashSet;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Stack;
+import java.util.Vector;
+import java.util.Comparator;
+class Pair{
+    public int t;
+    public int d;
+    void input(Scanner sc){
+        t = sc.nextInt();
+        d = sc.nextInt();
+    }
+}
+public class Myjava1 {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        Vector<Pair> v = new Vector<>();
+        for(int i = 0 ; i < n;i++){
+            Pair x = new Pair();
+            x.input(sc);
+            v.add(x);
+        }
+        Collections.sort(v, new Comparator<Pair>(){
+            public int compare(Pair a, Pair b){
+                if(a.t != b.t){
+                    return a.t - b.t;
+                }
+                return a.d - b.t;
+            }
+        });
+        int time = 0;
+        for(int i = 0 ; i < n;i++){
+            if(time < v.get(i).t){
+                time = v.get(i).t;
+            }
+            time += v.get(i).d;
+        }
+        System.out.println(time);
+    }
+  }
