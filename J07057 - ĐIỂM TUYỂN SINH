@@ -1,0 +1,96 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
+import java.util.Map.Entry;
+class TS implements Comparable<TS>{
+    private int ma;
+    private String ten;
+    private double diem;
+    private String dantoc;
+    private int kv;
+
+    public TS(int ma, String ten, double diem, String dantoc, int kv) {
+        this.ma = ma;
+        this.ten = ten;
+        this.diem = diem;
+        this.dantoc = dantoc;
+        this.kv = kv;
+    }
+    public String getMa(){
+        return "TS" + String.format("%02d", ma);
+    }
+    public String getTen(){
+        String name = "";
+        String arr[] = ten.trim().split("\\s+");
+        for(int i = 0 ; i < arr.length;i++){
+            name += arr[i].toUpperCase().charAt(0);
+            for(int j = 1 ; j < arr[i].length();j++){
+                name += arr[i].toLowerCase().charAt(j);              
+            }
+            if(i != arr.length - 1) name += " ";
+        }
+        return name;
+    }
+    public String getTong(){
+        double tong = diem;
+        if(kv == 1){
+            tong += 1.5;
+        }
+        else if(kv == 2){
+            tong += 1;
+        }
+        else tong += 0;
+        if(dantoc.equals("Kinh")) return String.format("%.1f", tong);
+        else return String.format("%.1f", tong + 1.5);
+    }
+    public double getDiem(){
+        double tong = diem;
+        if(kv == 1){
+            tong += 1.5;
+        }
+        else if(kv == 2){
+            tong += 1;
+        }
+        else tong += 0;
+        if(dantoc.equals("Kinh")) return tong;
+        return tong + 1.5;
+    }
+    public String getTT(){
+        if(getDiem() >= 20.5) return "Do";
+        else return "Truot";
+    }
+    @Override
+    public String toString(){
+        return getMa() + " " + getTen() + " " + getTong() + " " + getTT();
+    }
+
+    @Override
+    public int compareTo(TS o) {
+       if(o.getDiem() != getDiem()){
+           if(o.getDiem() > getDiem())return 1;
+           else return -1;
+       }
+       return getMa().compareTo(o.getMa());
+    }
+}
+public class Myjava1{
+      
+       public static void main(String[] args) throws IOException{
+       Scanner sc = new Scanner( new File("THISINH.in"));
+       //Scanner sc = new Scanner(System.in);
+       int n = Integer.parseInt(sc.nextLine());
+       ArrayList<TS> a = new ArrayList<>();
+       for(int i = 1 ; i <= n;i++){
+           a.add(new TS(i, sc.nextLine(), Double.parseDouble(sc.nextLine()), sc.nextLine(), Integer.parseInt(sc.nextLine())));
+       }
+       Collections.sort(a);
+       for(TS x : a){
+           System.out.println(x);
+       }
+ }
+}
