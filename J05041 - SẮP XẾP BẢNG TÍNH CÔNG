@@ -1,0 +1,65 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+class TL implements Comparable<TL>{
+      private int mnv;
+      private String ten;
+      private int ln, snc;
+      private String cv;
+
+    public TL(int mnv, String ten, int ln, int snc, String cv) {
+        this.mnv = mnv;
+        this.ten = ten;
+        this.ln = ln;
+        this.snc = snc;
+        this.cv = cv;
+    }
+    public String getMa(){
+        return "NV" + String.format("%02d", mnv);
+    }
+    public int getLt(){
+        return ln * snc;
+    }
+    public int getThuong(){
+        if(snc >= 25) return getLt() / 5;
+        else if(snc >= 22 && snc < 25) return getLt() / 10;
+        else return 0;
+    }
+    public int getPc(){
+        if(cv.equals("GD")) return 250000;
+        else if(cv.equals("PGD")) return 200000;
+        else if(cv.equals("TP")) return 180000;
+        else return 150000;
+    }
+    public int getTL(){
+        return getLt() + getThuong() + getPc();
+    }
+    @Override 
+    public String toString(){
+        return getMa() + " " + ten + " " + getLt() + " " + getThuong() + " " + getPc() + " " + getTL();
+    }
+
+    @Override
+    public int compareTo(TL o) {
+       return o.getTL() - getTL();
+    }
+}
+public class Myjava1{       
+      public static void main(String[] args) throws IOException{
+      //Scanner sc = new Scanner(new File("/Users/anhduc/NetBeansProjects/myjava1/src/myjava1/DATA.in"));
+      Scanner sc = new Scanner(System.in);
+      int n = Integer.parseInt(sc.nextLine());
+      ArrayList<TL> a = new ArrayList<>();
+      for(int i = 1 ; i <= n;i++){
+          a.add(new TL(i, sc.nextLine(), Integer.parseInt(sc.nextLine()), Integer.parseInt(sc.nextLine()), sc.nextLine()));
+      }
+      Collections.sort(a);
+      for(TL x : a){
+          System.out.println(x);
+      }
+    }
+ }
