@@ -1,0 +1,44 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
+import java.util.Map.Entry;
+class MH implements Comparable<MH>{
+    private String mmh, tm, htt;
+    public MH(String mmh, String tm, String htt) {
+        this.mmh = mmh;
+        this.tm = tm;
+        this.htt = htt;
+    }
+
+    public String getMmh() {
+        return mmh;
+    }
+    @Override
+    public String toString(){
+        return mmh + " " + tm + " " + htt;
+    }
+
+    @Override
+    public int compareTo(MH o) {
+        return getMmh().compareTo(o.getMmh());
+    }
+}
+public class Myjava1{
+       public static void main(String[] args) throws IOException{
+       Scanner sc = new Scanner( new File("MONHOC.in"));
+       int n = Integer.parseInt(sc.nextLine());
+       ArrayList<MH> a = new ArrayList<>();
+       while(n-- > 0){
+           a.add(new MH(sc.nextLine(), sc.nextLine(), sc.nextLine()));
+       }
+       Collections.sort(a);
+       for(MH x : a){
+           System.out.println(x);
+       }
+    }
+ }
