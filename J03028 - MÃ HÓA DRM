@@ -1,0 +1,51 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Map.Entry;
+public class Myjava1{
+      public static int []cnt = new int[256];
+      public static void change(String s){
+          int ans = 0;
+      String result = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+          for(char i = 'A'; i <= 'Z';i++){
+              cnt[i] = ans;
+              ans++;
+      }
+      String s1 = s.substring(0, s.length() / 2);
+      String s2 = s.substring(s.length() / 2);
+      int x1 = 0, x2 = 0;
+      for(char x : s1.toCharArray()){
+         x1 += cnt[x];
+      }
+      for(char x : s2.toCharArray()){
+         x2 += cnt[x];
+      }
+      String ans1 = "", ans2 = "";
+      for(char x : s1.toCharArray()){
+          ans1 += result.charAt((cnt[x] + x1) % 26);
+      }
+      for(char x : s2.toCharArray()){
+          ans2 += result.charAt((cnt[x] + x2) % 26);
+      }
+      String kq = "";
+      for(int i = 0 ; i < ans1.length();i++){
+          kq += result.charAt((cnt[ans1.charAt(i)] + cnt[ans2.charAt(i)]) % 26);
+      }
+          System.out.println(kq);
+      }
+      public static void main(String[] args){
+      Scanner sc = new Scanner(System.in);
+  
+      int t = Integer.parseInt(sc.nextLine());
+      while(t-- > 0){
+          String s = sc.nextLine();
+          change(s);
+      }
+    }  
+ }
