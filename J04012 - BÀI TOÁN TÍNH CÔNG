@@ -1,0 +1,83 @@
+package myjava1;
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+import static java.lang.Math.*;
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Stack;
+import java.util.InputMismatchException;
+import java.util.Vector;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.StringTokenizer;
+class NhanVien{
+     private String mnv;
+     private String ten;
+     private long lcb;
+     private long snc;
+     private String cv;
+     private long lt;
+     private long thuong;
+     private long pc;
+     private long tn;
+     NhanVien(String mnv, String ten, long lcb, long snc, String cv, long lt, long thuong, long pc, long tn){
+         this.mnv = mnv;
+         this.ten = ten;
+         this.lcb = lcb;
+         this.snc = snc;
+         this.cv = cv;
+         this.lt = lt;
+         this.thuong = thuong;
+         this.pc = pc;
+         this.tn = tn;
+     }
+     public void change(){
+         lt = snc * lcb;
+         if(snc >= 25){
+             thuong = (long)(lt / 5);
+         }
+         else if(snc >= 22 && snc < 25){
+             thuong = (long)(lt / 10);
+         }
+         else{
+             thuong = 0;
+         }
+         if(cv.equals("GD")){
+             pc = 250000;
+         }
+         else if(cv.equals("PGD")){
+             pc = 200000;
+         }
+         else if(cv.equals("TP")){
+             pc = 180000;
+         }
+         else{
+             pc = 150000;
+         }
+         tn = pc + thuong + lt;
+     }
+     @Override
+     public String toString(){
+         return mnv + " " + ten + " " + lt + " " + thuong + " " + pc + " " + tn;
+     }
+}
+public class Myjava1{
+    public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String ten = sc.nextLine();
+    long lcb = sc.nextLong();
+    long snc = sc.nextLong();
+    sc.nextLine();
+    String cv = sc.nextLine();
+    NhanVien n = new NhanVien("NV01", ten, lcb, snc, cv, 0, 0, 0 ,0);
+    n.change();
+        System.out.println(n);
+  
+}
+}
