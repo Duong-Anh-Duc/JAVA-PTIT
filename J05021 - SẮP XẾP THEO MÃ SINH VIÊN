@@ -1,0 +1,60 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Map.Entry;
+class SV implements Comparable<SV>{
+    private String msv, ten, lop, email;
+
+    public SV(String msv, String ten, String lop, String email) {
+        this.msv = msv;
+        this.ten = ten;
+        this.lop = lop;
+        this.email = email;
+    }
+    @Override
+    public String toString(){
+        return msv + " " + ten + " " + lop + " " + email;
+    }
+
+    @Override
+    public int compareTo(SV o) {
+      return msv.compareTo(o.msv);
+    }
+}
+public class Myjava1{
+          
+      public static void main(String[] args) throws IOException{
+      //Scanner sc = new Scanner(new File("/Users/anhduc/NetBeansProjects/myjava1/src/myjava1/DATA.in"));
+      Scanner sc = new Scanner(System.in);
+      ArrayList<SV> a = new ArrayList<>();
+      int ans = 1;
+      String msv = "", ten = "", lop = "", email = "";
+      while(sc.hasNext()){
+          if(ans == 1){
+              msv = sc.nextLine();
+          }
+          if(ans == 2){
+              ten = sc.nextLine();
+          }
+          if(ans == 3){
+              lop = sc.nextLine();
+          }
+          if(ans == 4){
+              email = sc.nextLine();
+              a.add(new SV(msv, ten, lop, email));
+              ans = 0;
+          }
+          ++ans;
+      }
+      Collections.sort(a);
+      for(SV x : a){
+          System.out.println(x);
+      }
+    }
+ }
