@@ -1,0 +1,45 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Map.Entry;
+class NV{
+    private int mnv;
+    private String ten, gt, ns, dc, mst, nkhd;
+
+    public NV(int mnv, String ten, String gt, String ns, String dc, String mst, String nkhd) {
+        this.mnv = mnv;
+        this.ten = ten;
+        this.gt = gt;
+        this.ns = ns;
+        this.dc = dc;
+        this.mst = mst;
+        this.nkhd = nkhd;
+    }
+    public String getMa(){
+        return String.format("%05d", mnv);
+    }
+    @Override
+    public String toString(){
+        return getMa() + " " + ten + " " + gt + " " + ns + " " + dc + " " + mst + " " + nkhd;
+    }
+}
+public class Myjava1{
+          
+      public static void main(String[] args) throws IOException{
+      Scanner sc = new Scanner(System.in);
+      int n = Integer.parseInt(sc.nextLine());
+      ArrayList<NV> a = new ArrayList<>();
+      for(int i = 1 ; i <= n;i++){
+          a.add(new NV(i, sc.nextLine(), sc.nextLine(), sc.nextLine(), sc.nextLine(), sc.nextLine(), sc.nextLine()));
+      }
+      for(NV x : a){
+          System.out.println(x);
+      }
+    }  
+ }
