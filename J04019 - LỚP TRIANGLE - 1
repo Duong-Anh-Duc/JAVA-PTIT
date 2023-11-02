@@ -1,0 +1,75 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+class Point{
+    private double x;
+    private double y;
+    public Point(double x, double y){
+        this.x = x;
+        this.y = y;
+    }
+    public static Point nextPoint(Scanner sc){
+        return new Point(sc.nextDouble(), sc.nextDouble());
+    }
+    public double getX(){
+        return x;
+    }
+    public double getY(){
+        return y;
+    }
+}
+class Triangle{
+    private Point a;
+    private Point b;
+    private Point c;
+    public Triangle(Point a, Point b, Point c){
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+    public double getab(){
+        return Math.sqrt(pow(b.getX() - a.getX(), 2) + pow(b.getY() - a.getY(), 2));
+    }
+    public double getac(){
+        return Math.sqrt(pow(c.getX() - a.getX(), 2) + pow(c.getY() - a.getY(), 2));
+    }
+    public double getbc(){
+        return Math.sqrt(pow(c.getX() - b.getX(), 2) + pow(c.getY() - b.getY(), 2));
+    }
+    public boolean valid(){
+        double ab = Math.sqrt(pow(b.getX() - a.getX(), 2) + pow(b.getY() - a.getY(), 2));
+        double ac = Math.sqrt(pow(c.getX() - a.getX(), 2) + pow(c.getY() - a.getY(), 2));
+        double bc = Math.sqrt(pow(c.getX() - b.getX(), 2) + pow(c.getY() - b.getY(), 2));
+        return !(ab >= ac + bc || ac >= ab + bc || bc >= ac + ab);
+    }
+    public String getPerimeter(){
+        return String.format("%.3f", getab() + getac() + getbc());
+    }
+}
+public class Myjava1{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while(t-- >0){
+            Triangle a = new Triangle(Point.nextPoint(sc), Point.nextPoint(sc), Point.nextPoint(sc));
+            if(!a.valid()){
+                System.out.println("INVALID");
+            } else{
+                System.out.println(a.getPerimeter());
+            }
+        }
+    }
+    public static void main384987(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while(t-- >0){
+            Triangle a = new Triangle(Point.nextPoint(sc), Point.nextPoint(sc), Point.nextPoint(sc));
+            if(!a.valid()){
+                System.out.println("INVALID");
+            } else{
+                System.out.println(a.getPerimeter());
+            }
+        }
+    }
+   
+}
