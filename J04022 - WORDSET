@@ -1,0 +1,49 @@
+package myjava1;
+import java.util.*;
+import java.io.File;
+import static java.lang.Math.*;
+class WordSet{
+    private TreeSet<String> set;
+    WordSet(TreeSet<String> set){
+        this.set = set;
+    }
+    WordSet(String s){
+        this.set = new TreeSet<>();
+        String []arr = s.toLowerCase().split("\\s+");
+        for(String x : arr){
+            this.set.add(x);
+        }
+    }
+    public WordSet union(WordSet b){
+        TreeSet<String> hop = new TreeSet<>();
+        for(String x : b.set) hop.add(x);
+        for(String x : this.set) hop.add(x);
+        return new WordSet(hop);
+    }
+    public WordSet intersection(WordSet b){
+        TreeSet<String> giao = new TreeSet<>();
+        for(String x : this.set){
+            if(b.set.contains(x)){
+                giao.add(x);
+        }
+        }
+        return new WordSet(giao);
+    }
+    @Override
+    public String toString(){
+        String ans = "";
+        for(String x : set){
+            ans += x + " ";
+        }
+        return ans;
+    }
+}
+public class Myjava1{
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        WordSet s1 = new WordSet(in.nextLine());
+        WordSet s2 = new WordSet(in.nextLine());
+        System.out.println(s1.union(s2));
+        System.out.println(s1.intersection(s2));
+    }
+}
