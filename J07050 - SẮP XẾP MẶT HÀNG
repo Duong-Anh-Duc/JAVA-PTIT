@@ -1,0 +1,45 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
+class MH implements Comparable<MH>{
+     private int mh;
+     private String tmh, nh;
+     private float gm, gb;
+     MH(int mh, String tmh, String nh, float gm, float gb){
+         this.mh = mh; this.tmh = tmh; this.nh = nh; this.gm = gm; this.gb = gb;
+     }
+     public String getMH(){
+         return "MH" + String.format("%02d", mh);
+     }
+     public float getLN(){
+         return gb - gm;
+     }
+    @Override
+    public String toString(){
+        return getMH() + " " + tmh + " " + nh + " " + String.format("%.2f", getLN());
+    }
+    @Override
+    public int compareTo(MH o) {
+       if(o.getLN() > getLN()) return 1;
+       return -1;
+    }
+}
+public class Myjava1{
+       public static void main(String[] args) throws IOException, FileNotFoundException{
+       Scanner sc = new Scanner(new File("MATHANG.in"));
+       int n = Integer.parseInt(sc.nextLine());
+       ArrayList<MH> a = new ArrayList<>();
+       for(int i = 1 ; i <= n;i++){
+           a.add(new MH(i, sc.nextLine(), sc.nextLine(), Float.parseFloat(sc.nextLine()), Float.parseFloat(sc.nextLine())));
+       }
+       Collections.sort(a);
+       for(MH x : a){
+           System.out.println(x);
+       }
+   }       
+ }
