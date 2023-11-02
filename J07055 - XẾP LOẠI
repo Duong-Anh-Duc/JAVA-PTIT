@@ -1,0 +1,71 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
+class BD implements Comparable<BD>{
+    private int msv;
+    private String ten;
+    private int lt, th, t;
+
+    public BD(int msv, String ten, int lt, int th, int t) {
+        this.msv = msv;
+        this.ten = ten;
+        this.lt = lt;
+        this.th = th;
+        this.t = t;
+    }
+    public String getMSV(){
+        return "SV" + String.format("%02d", msv); 
+    }
+    public String getTen(){
+        String name = "";
+        String arr[] = ten.trim().split("\\s+");
+        for(int i = 0 ; i < arr.length;i++){
+            name += arr[i].toUpperCase().charAt(0);
+            for(int j = 1 ; j < arr[i].length();j++){
+                name += arr[i].toLowerCase().charAt(j);
+            }
+            if(i != arr.length - 1) name += " ";
+        }
+        return name;
+    }
+    public String getTK(){
+        return String.format("%.2f", (float)(lt * 0.25 + th * 0.35 + t * 0.4));
+    }
+    public float getTong(){
+        return (float)(lt * 0.25 + th * 0.35 + t * 0.4);
+    }
+    public String getXL(){
+        if(getTong() >= 8) return "GIOI";
+        else if(getTong() >= 6.5 && getTong() < 8) return "KHA";
+        else if(getTong() >= 5 && getTong() < 6.5) return "TRUNG BINH";
+        else return "KEM";     
+    }
+    @Override
+    public String toString(){
+        return getMSV() + " " + getTen() + " " + getTK() + " " + getXL();
+    }
+    @Override
+    public int compareTo(BD o) {
+      if(getTong() > o.getTong()) return -1;
+      return 1;
+    }
+}
+public class Myjava1{
+       public static void main(String[] args) throws IOException{
+       Scanner sc = new Scanner(new File("BANGDIEM.in"));
+       int n = Integer.parseInt(sc.nextLine());
+       ArrayList<BD> a = new ArrayList<>();
+       for(int i = 1 ; i <= n;i++){
+           a.add(new BD(i, sc.nextLine(), Integer.parseInt(sc.nextLine()), Integer.parseInt(sc.nextLine()), Integer.parseInt(sc.nextLine())));
+       }
+       Collections.sort(a);
+       for(BD x : a){
+           System.out.println(x);
+       }
+   }       
+ }
