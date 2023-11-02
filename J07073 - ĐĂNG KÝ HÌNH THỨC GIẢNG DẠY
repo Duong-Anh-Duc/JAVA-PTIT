@@ -1,0 +1,58 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
+import java.util.Map.Entry;
+class MH implements Comparable<MH>{
+      private String mmh, tmh;
+      private int stc;
+      private String lt, th;
+
+    public MH(String mmh, String tmh, int stc, String lt, String th) {
+        this.mmh = mmh;
+        this.tmh = tmh;
+        this.stc = stc;
+        this.lt = lt;
+        this.th = th;
+    }
+    public String getMa(){
+        return mmh;
+    }
+    public boolean getTH(){
+        if(th.equals("Truc tuyen")) return true;
+        if(th.length() < 13) return false;
+        String ans = th.substring(th.length() - 12);
+        return ans.equals(".ptit.edu.vn");
+    }
+    @Override
+    public String toString(){
+        return mmh + " " + tmh + " " + stc + " " + lt + " " + th;
+    }
+
+    @Override
+    public int compareTo(MH o) {
+      return getMa().compareTo(o.getMa());
+    }
+}
+public class Myjava1{
+       public static void main(String[] args) throws IOException{
+       Scanner sc = new Scanner( new File("MONHOC.in"));
+       //Scanner sc = new Scanner(System.in);
+       int n = Integer.parseInt(sc.nextLine());
+       ArrayList<MH> a = new ArrayList<>();
+       for(int i = 1 ; i <= n;i++){
+          MH tmp = new MH(sc.nextLine(), sc.nextLine(), Integer.parseInt(sc.nextLine()), sc.nextLine(), sc.nextLine());
+        if(tmp.getTH()){
+             a.add(tmp);
+        }
+       }
+       Collections.sort(a);
+       for(MH x : a){
+           System.out.println(x);
+       }
+    }
+ }
