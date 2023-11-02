@@ -1,0 +1,29 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
+public class Myjava1{
+       public static void change(String s){
+           String ans = "";
+           for(char x : s.toCharArray()){
+               if(Character.isDigit(x)) ans += x;
+           }
+          int tong = 0;
+          for(char x : ans.toCharArray()){
+              tong += (x - '0');
+          }
+          while(ans.length() > 1 && ans.charAt(0) == '0') ans = ans.substring(1);
+           System.out.println(ans + " " + tong);
+       }
+       public static void main(String[] args) throws IOException, ClassNotFoundException{
+       ObjectInputStream ois = new ObjectInputStream(new FileInputStream("DATA.in"));
+       ArrayList<String> a = (ArrayList<String>) ois.readObject();
+       for(String x : a){
+           change(x);
+       }
+   }       
+ }
