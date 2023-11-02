@@ -1,0 +1,45 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Map.Entry;
+class BD implements Comparable<BD>{
+    private String ten, ns;
+
+    public BD(String ten, String ns) {
+        this.ten = ten;
+        this.ns = ns;
+    }
+    public String getNs(){
+        return ns.substring(6) + ns.substring(3, 5) + ns.substring(0 ,2);
+    }
+    @Override
+    public String toString(){
+        return ten;
+    }
+
+    @Override
+    public int compareTo(BD o) {
+       return o.getNs().compareTo(getNs());
+    }
+    
+}
+public class Myjava1{       
+      public static void main(String[] args) throws IOException{
+      //Scanner sc = new Scanner(new File("/Users/anhduc/NetBeansProjects/myjava1/src/myjava1/DATA.in"));
+      Scanner sc = new Scanner(System.in);
+      int n = Integer.parseInt(sc.nextLine());
+      ArrayList<BD> a = new ArrayList<>();
+      for(int i = 1 ; i <= n;i++){
+          a.add(new BD(sc.next(), sc.next()));
+      }
+      Collections.sort(a);
+      System.out.println(a.get(0));
+      System.out.println(a.get(a.size() - 1));
+    }
+ }
