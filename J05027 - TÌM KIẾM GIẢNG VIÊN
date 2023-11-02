@@ -1,0 +1,82 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Map.Entry;
+class GV implements Comparable<GV>{
+    private int ma;
+    private String ten, bm;
+
+    public GV(int ma, String ten, String bm) {
+        this.ma = ma;
+        this.ten = ten;
+        this.bm = bm;
+    }
+    public String getMa(){
+       return "GV" + String.format("%02d", ma);
+    }
+    public String getName(){
+        return ten;
+    }
+    public String getTen(){
+        String arr[] = ten.split("\\s+");
+        return arr[arr.length - 1];
+    }
+    public String getMon(){
+        String arr[] = bm.split("\\s+");
+        String mon = "";
+        for(int i = 0 ; i < arr.length;i++){
+            mon += arr[i].toUpperCase().charAt(0);
+        }
+        return mon;
+    }
+    @Override
+    public String toString(){
+        return getMa() + " " + ten + " " + getMon();
+    }
+
+    @Override
+    public int compareTo(GV o) {
+         int tmp = getTen().compareTo(o.getTen());
+         if(tmp != 0) return tmp;
+         return getMa().compareTo(o.getMa());
+    }
+}
+public class Myjava1{       
+      public static boolean check(String a, String b){
+          String arr[] = a.toLowerCase().split("\\s+");
+          String d = b.toLowerCase();
+          String c = "";
+          for(int i = 0 ; i < arr.length;i++){
+              c += arr[i];
+          }
+          for(int i = 0 ; i < c.length() - d.length() + 1;i++){
+              if(c.substring(i, i + d.length()).equals(d)) return true;
+          }
+          return false;
+      }
+      public static void main(String[] args) throws IOException{
+      //Scanner sc = new Scanner(new File("/Users/anhduc/NetBeansProjects/myjava1/src/myjava1/DATA.in"));
+      Scanner sc = new Scanner(System.in);
+      int n = Integer.parseInt(sc.nextLine());
+      ArrayList<GV> a = new ArrayList<>();
+      for(int i = 1 ; i <= n;i++){
+          a.add(new GV(i, sc.nextLine(), sc.nextLine()));
+      }
+      int q = Integer.parseInt(sc.nextLine());
+      while(q-- > 0){
+          String tk = sc.nextLine();
+          System.out.println("DANH SACH GIANG VIEN THEO TU KHOA " + tk + ":");
+          for(int i = 0 ; i < a.size();i++){
+              if(check(a.get(i).getName(), tk)){
+                  System.out.println(a.get(i));
+              }
+          }   
+      }
+    }
+ }
