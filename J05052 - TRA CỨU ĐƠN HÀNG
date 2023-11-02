@@ -1,0 +1,50 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.math.*;
+class DH{
+    private String th, mdh;
+    private long dg, sl;
+
+    public DH(String th, String mdh, long dg, long sl) {
+        this.th = th;
+        this.mdh = mdh;
+        this.dg = dg;
+        this.sl = sl;
+    }
+    public String getStt(){
+        return mdh.substring(1, 4);
+    }
+    public String getMa(){
+        return Character.toString(mdh.charAt(mdh.length() - 1));
+    }
+    public long getGd(){
+        if(getMa().equals("1")) return dg * sl * 50 / 100;
+        return dg * sl * 30 / 100;
+    }
+    public long getTt(){
+        return dg * sl - getGd();
+    }
+    @Override
+    public String toString(){
+        return th + " " + mdh + " " + getStt() + " " + getGd() + " " + getTt();
+    }
+}
+public class Myjava1{   
+     public static void main(String[] args) throws IOException, ClassNotFoundException {
+     Scanner sc = new Scanner(System.in);
+     //Scanner sc = new Scanner(new File("/Users/anhduc/NetBeansProjects/myjava1/src/myjava1/DATA.in"));
+    int n = Integer.parseInt(sc.nextLine());
+    ArrayList<DH> a = new ArrayList<>();
+    for(int i = 1 ; i <= n;i++){
+      a.add(new DH(sc.nextLine(), sc.nextLine(), Long.parseLong(sc.nextLine()), Long.parseLong(sc.nextLine())));
+    }
+    for(DH x : a){
+        System.out.println(x);
+    }
+ }
+}
