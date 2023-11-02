@@ -1,0 +1,51 @@
+import static java.lang.Math.*;
+import java.util.*;
+public class Mỵjava1{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt(), s = sc.nextInt();
+        if(s > 9 * n || (s == 0 && n > 1)){
+            System.out.println("-1 -1");
+        }
+        else{
+            int sum1 = s;
+            int []be = new int[n];
+            int []lon = new int[n];
+            for(int i = 0 ; i < n;i++){
+                if(sum1 > 9){
+                    lon[i] = 9;
+                    sum1 -= 9;
+                }
+                else if(sum1 > 0 && sum1 <= 9){
+                    lon[i] = sum1;
+                    sum1 = 0;
+                }
+                else{
+                    break;
+                }
+            }
+            s--;
+            for(int i = n - 1; i >= 0;i--){
+                if(s > 9){
+                    be[i] = 9;
+                    s -= 9;
+                }
+                else if(s <= 9 && s > 0){
+                    be[i] = s;
+                    s = 0;
+                }
+                else{
+                  break;
+                }
+            }
+            be[0]++;
+            for(int i = 0 ; i < n;i++){
+                System.out.print(be[i]);
+            }
+            System.out.print(" ");
+            for(int i = 0 ; i < n;i++){
+                System.out.print(lon[i]);
+            }
+        }
+    }
+}
