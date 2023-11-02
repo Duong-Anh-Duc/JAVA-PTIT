@@ -1,0 +1,47 @@
+package myjava1;
+import java.util.*;
+class PhanSo{
+    private long tu;
+    private long mau;
+    PhanSo(long tu, long mau){
+        this.tu = tu;
+        this.mau = mau;
+    }
+    public long getTu(){
+        return this.tu;
+    }
+    public long getMau(){
+        return this.mau;
+    }
+    public static long gcd(long a, long b){
+        if(b == 0) return a;
+        return gcd(b, a % b);
+    }
+    public PhanSo rutgon(PhanSo a){
+        long ucln = gcd(a.tu, a.mau);
+        PhanSo ans = new PhanSo(a.tu / ucln, a.mau / ucln);
+        return ans;
+    }
+    @Override
+    public String toString(){
+        return tu + "/" + mau;
+    }
+}
+public class Myjava1 {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while(t-- > 0){
+        long a = sc.nextLong();
+        long b = sc.nextLong();
+        long c = sc.nextLong();
+        long d = sc.nextLong();
+        PhanSo p = new PhanSo((a * d + b * c) * (a * d + b * c), (b * d) * (b * d));
+        p = p.rutgon(p);
+        PhanSo q = new PhanSo(a * c * p.getTu(), b * d * p.getMau());
+        System.out.print(p + " ");
+        q = q.rutgon(q);
+        System.out.println(q);
+    }        
+    }
+}
