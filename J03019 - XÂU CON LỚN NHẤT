@@ -1,0 +1,19 @@
+package myjava1;
+import java.util.*;
+import java.math.*;
+public class Myjava1 {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+            String s = sc.next();
+            String ans = "";
+            char x = 'a';
+            for(int i = s.length() - 1 ; i >= 0;i--){
+                char k = s.charAt(i);
+                if(k >= x){
+                    x = k;
+                    ans = k + ans;
+                }
+            }
+            System.out.println(ans);    
+    }
+}
