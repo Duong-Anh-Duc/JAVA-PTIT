@@ -1,0 +1,34 @@
+package myjava1;
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.lang.Math;
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Stack;
+import java.util.Vector;
+import java.util.Comparator;
+public class Myjava1 {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while(t-- > 0){
+        int n = sc.nextInt();
+        long a[] = new long[n];
+        long min_pos = (long)1e18;
+        for(int i = 0 ; i < n;i++){
+            a[i] = sc.nextLong();
+            min_pos = Math.min(a[i], min_pos);
+        }
+        for(int i = 0 ; i < n;i++){
+            if(min_pos == a[i]){
+                System.out.println(i);
+                break;
+            }
+        }
+    }
+  }
+}
