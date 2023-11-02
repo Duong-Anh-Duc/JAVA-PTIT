@@ -1,0 +1,52 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
+import java.util.Map.Entry;
+class SV implements Comparable<SV>{
+    private String msv, ten, sdt, email;
+    public SV(String msv, String ten, String sdt, String email) {
+        this.msv = msv;
+        this.ten = ten;
+        this.sdt = sdt;
+        this.email = email;
+    }
+    public String getName(){
+        String arr[] = ten.split("\\s+");
+        String ans = arr[arr.length - 1] + arr[0];
+        for(int i = 1 ; i < arr.length - 1;i++){
+            ans += arr[i];
+        }
+        return ans;
+    }
+    @Override
+    public String toString(){
+        return msv + " " + ten + " " + sdt + " " + email;
+    }
+    @Override
+    public int compareTo(SV o) {
+        if(!getName().equals(o.getName())){
+            return getName().compareTo(o.getName());
+        }
+        else return msv.compareTo(o.msv);
+    }
+}
+public class Myjava1{
+       public static void main(String[] args) throws IOException{
+       Scanner sc = new Scanner( new File("SINHVIEN.in"));
+       //Scanner sc = new Scanner(System.in);
+       int n = Integer.parseInt(sc.nextLine());
+       ArrayList<SV> a = new ArrayList<>();
+       while(n-- > 0){
+           a.add(new SV(sc.nextLine(), sc.nextLine(), sc.nextLine(), sc.nextLine()));
+       }
+       Collections.sort(a);
+       for(SV x : a){
+           System.out.println(x);
+       }
+    }
+ }
