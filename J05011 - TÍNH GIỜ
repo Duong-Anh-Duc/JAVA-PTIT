@@ -1,0 +1,63 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Map.Entry;
+class TG implements Comparable<TG>{
+    private String ma, ten, gv, gr;
+
+    public TG(String ma, String ten, String gv, String gr) {
+        this.ma = ma;
+        this.ten = ten;
+        this.gv = gv;
+        this.gr = gr;
+    }
+    public String getHM(){
+        int a = Integer.parseInt(gv.substring(0, 2));
+        int b = Integer.parseInt(gr.substring(0, 2));
+        int c = Integer.parseInt(gv.substring(3));
+        int d = Integer.parseInt(gr.substring(3));
+        if(d < c){
+            --b;
+            d += 60;
+        }
+        return Integer.toString(b - a) + " gio " + Integer.toString(d - c) + " phut ";
+    }
+    @Override
+    public String toString(){
+        return ma + " " + ten + " " + getHM();
+    }
+
+    @Override
+    public int compareTo(TG o) {
+       String arr[] = getHM().split("\\s+");
+       String arr1[] = o.getHM().split("\\s+");
+       int x = Integer.parseInt(arr[0]);
+       int y = Integer.parseInt(arr1[0]);
+       int z = Integer.parseInt(arr[2]);
+       int t = Integer.parseInt(arr1[2]);
+       if(x != y) return y - x;
+       return t - z;
+    }
+}
+public class Myjava1{
+          
+      public static void main(String[] args) throws IOException{
+      //Scanner sc = new Scanner(new File("/Users/anhduc/NetBeansProjects/myjava1/src/myjava1/DATA.in"));
+      Scanner sc = new Scanner(System.in);
+      int n = Integer.parseInt(sc.nextLine());
+      ArrayList<TG> a = new ArrayList<>();
+      while(n-- > 0){
+          a.add(new TG(sc.nextLine(), sc.nextLine(), sc.nextLine(), sc.nextLine()));
+      }
+      Collections.sort(a);
+      for(TG x : a){
+          System.out.println(x);
+      }
+      }
+ }
