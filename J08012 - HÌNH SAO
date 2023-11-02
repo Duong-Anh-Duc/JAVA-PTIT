@@ -1,0 +1,29 @@
+package myjava1;
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.lang.Math;
+import java.math.BigInteger;
+import java.util.HashSet;
+import java.util.Collections;
+public class Myjava1 {
+    public static int[] cnt = new int[100005];
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int check = 0;
+        for(int i = 1 ; i < n;i++){
+            int x = sc.nextInt(), y = sc.nextInt();
+            cnt[x]++;
+            cnt[y]++;
+            if(cnt[x] == n - 1) check++;
+            if(cnt[y] == n - 1) check++;
+        }
+        if(check == 1){
+            System.out.println("Yes");
+        }
+        else{
+            System.out.println("No");
+        }
+  }
+}
