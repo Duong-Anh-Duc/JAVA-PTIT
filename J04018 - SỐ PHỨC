@@ -1,0 +1,37 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Map.Entry;
+public class Myjava1{
+      public static void main(String[] args){
+      Scanner sc = new Scanner(System.in);
+      int n = sc.nextInt();
+      while(n-- > 0){
+          long a = sc.nextLong(), b = sc.nextLong(), c = sc.nextLong(), d = sc.nextLong();
+          System.out.print((a + c) * a  - b * (b + d) + " ");
+          if(((b+d)*a + (a + c) * b) < 0){
+              System.out.print("- ");
+               System.out.print(((-1) * ((b+d)*a + (a + c) * b)) + "i, ");
+          }
+          else {
+              System.out.print("+ ");
+              System.out.print(((b+d)*a + (a + c) * b) + "i, ");
+          }
+          System.out.print((a + c) * (a + c) - (b + d) * (b + d) + " ");
+          if(2 * (a + c) * (b + d) < 0){
+              System.out.print("- ");
+              System.out.println((-1) * (2 * (a + c) * (b + d)) + "i");
+          }
+          else{
+              System.out.print("+ ");
+              System.out.println(2 * (a + c) * (b + d) + "i");
+          }
+      }
+    }  
+ }
