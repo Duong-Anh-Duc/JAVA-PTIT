@@ -1,0 +1,84 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
+class BD implements Comparable<BD>{
+    private int msv;
+    private String ten;
+    private float m1, m2, m3;
+
+    public BD(int msv, String ten, float m1, float m2, float m3) {
+        this.msv = msv;
+        this.ten = ten;
+        this.m1 = m1;
+        this.m2 = m2;
+        this.m3 = m3;
+    }
+    public String getMa(){
+        return "SV" + String.format("%02d", msv);
+    }
+    public String getTen(){
+        String name = "";
+        String []arr = ten.trim().split("\\s+");
+        for(int i = 0 ; i < arr.length;i++){
+            name += arr[i].toUpperCase().charAt(0);
+            for(int j = 1 ; j < arr[i].length();j++){
+                name += arr[i].toLowerCase().charAt(j);
+            }
+            if(i != arr.length - 1) name += " ";
+        }
+        return name;
+    }
+    public String getTB(){
+        return String.format("%.2f", (m1 * 3 + m2 * 3 + m3 * 2) / 8);
+    }
+    public float Diem(){
+        return (m1 * 3 + m2 * 3 + m3 * 2) / 8;
+    }
+    @Override
+    public String toString(){
+        return getMa() + " " + getTen() + " " + getTB();
+    }
+
+    @Override
+    public int compareTo(BD o) {
+        if(Diem() > o.Diem()) return -1;
+        else return 1;
+    }
+}
+public class Myjava1{
+       public static void main(String[] args) throws IOException{
+       Scanner sc = new Scanner(new File("BANGDIEM.in"));
+       int n = Integer.parseInt(sc.nextLine());
+       ArrayList<BD> a = new ArrayList<>();
+       for(int i = 1 ; i <= n;i++){
+          a.add(new BD(i, sc.nextLine(), Float.parseFloat(sc.nextLine()),Float.parseFloat(sc.nextLine()),Float.parseFloat(sc.nextLine())));
+       }
+       Collections.sort(a);
+       int xephang = 1;
+       float ans = 0;
+       int cnt = 1;
+       for(int i = 0 ; i < a.size();i++){
+           if(i == 0){
+               System.out.println(a.get(i) + " " + xephang);
+               ans = a.get(i).Diem();
+           }
+           else{
+               if(a.get(i).Diem() != ans){
+                   xephang += cnt;
+                   System.out.println(a.get(i) + " " + xephang);
+                   ans = a.get(i).Diem();
+                   cnt = 1;
+               }
+               else{
+                   System.out.println(a.get(i) + " " + xephang);
+                   cnt++;
+               }
+           }
+       }
+   }       
+ }
