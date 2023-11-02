@@ -1,0 +1,60 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.math.*;
+class TD{
+    private int mkh;
+    private String loai;
+    private long sc, sm;
+
+    public TD(int mkh, String loai, long sc, long sm) {
+        this.mkh = mkh;
+        this.loai = loai;
+        this.sc = sc;
+        this.sm = sm;
+    }
+
+    public String getMa(){
+        return "KH" + String.format("%02d", mkh);
+    }
+    public long getHs(){
+        if(loai.equals("KD")) return 3;
+        else if(loai.equals("NN")) return 5;
+        else if(loai.equals("TT")) return 4;
+        return 2;
+    }
+    public long getTT(){
+        return (sm - sc) * getHs() * 550;
+    }
+    public long getPt(){
+        long ans = sm - sc;
+        if(ans < 50) return 0;
+        else if(ans >= 50 && ans <= 100) return Math.round((getTT() * 1f * 35f / 100f));
+        else return getTT();
+    }
+    public long getTtpc(){
+        return getPt() + getTT();
+    }
+    @Override
+    public String toString(){
+        return getMa() + " " + getHs() + " " + getTT() + " " + getPt() + " " + getTtpc();
+    }
+}
+public class Myjava1{   
+     public static void main(String[] args) throws IOException, ClassNotFoundException {
+     Scanner sc = new Scanner(System.in);
+     //Scanner sc = new Scanner(new File("/Users/anhduc/NetBeansProjects/myjava1/src/myjava1/DATA.in"));
+    int n = Integer.parseInt(sc.nextLine());
+    ArrayList<TD> a = new ArrayList<>();
+    for(int i = 1 ; i <= n;i++){
+        a.add(new TD(i, sc.nextLine(), Long.parseLong(sc.nextLine()), Long.parseLong(sc.nextLine())));
+    }
+    for(TD x : a){
+        System.out.println(x);
+    }
+ }
+}
