@@ -1,0 +1,36 @@
+package myjava1;
+import java.util.*;
+import java.math.*;
+public class Myjava1 {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while(t-- > 0){
+           int n = sc.nextInt();
+           long k = sc.nextLong();
+           long []a = new long[n];
+           for(int i = 0 ; i < n;i++){
+               a[i] = sc.nextLong();
+           }
+           long sum = 0;
+           int j = 0;
+           boolean check = false;
+           for(int i = 0 ; i < n;i++){
+               sum += a[i];
+               while(sum > k && j < i){
+                   sum -= a[j];
+                   j++;
+               }
+               if(sum == k){
+                   check = true;
+               }
+        }
+           if(check){
+               System.out.println("YES");
+           }
+           else{
+               System.out.println("NO");
+           }
+    }        
+    }
+}
