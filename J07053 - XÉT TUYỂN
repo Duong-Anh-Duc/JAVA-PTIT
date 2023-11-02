@@ -1,0 +1,75 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
+class XT{
+    private int ma;
+    private String name, ns;
+    private float lt, th;
+
+    public XT(int ma, String name, String ns, float lt, float th) {
+        this.ma = ma;
+        this.name = name;
+        this.ns = ns;
+        this.lt = lt;
+        this.th = th;
+    }
+    public String getMa(){
+        return "PH" + String.format("%02d", ma);
+    }
+    public String getTen(){
+        String ans = "";
+        String []arr = name.trim().split("\\s+");
+        for(int i = 0 ; i < arr.length;i++){
+            ans += arr[i].toUpperCase().charAt(0);
+            for(int j = 1 ; j < arr[i].length();j++){
+                ans += arr[i].toLowerCase().charAt(j);
+            }
+            if(i != arr.length - 1) ans += " ";
+        }
+        return ans;
+    }
+    public int getTuoi(){
+        return 2021 - Integer.parseInt(ns.substring(ns.length() - 4));
+    }
+    public int getTB(){
+        float diemthuong = 0;
+        if(lt >= 8 && th >= 8) diemthuong = 1;
+        else if(lt >= 7.5 && lt < 8 && th >= 7.5 && th < 8) diemthuong = (float) 0.5;
+        else diemthuong = 0;
+        float tmp = (lt + th) / 2 + diemthuong;
+        int tong;
+        if(tmp >= 10) tong = 10;
+        else tong = Math.round(tmp);
+        return tong;
+    }
+    public String getXepLoai(){
+       if(getTB() < 5) return "Truot";
+       else if(getTB() == 5 || getTB() == 6) return "Trung binh";
+       else if(getTB() == 7) return "Kha";
+       else if(getTB() == 8) return "Gioi";
+       else return "Xuat sac";
+    }
+    @Override
+    public String toString(){
+        return getMa() + " " + getTen() + " " + getTuoi() + " "+  getTB() + " " + getXepLoai();
+    }
+}
+
+public class Myjava1{
+       public static void main(String[] args) throws IOException{
+       Scanner sc = new Scanner(new File("XETTUYEN.in"));
+       int n = Integer.parseInt(sc.nextLine());
+       ArrayList<XT> a = new ArrayList<>();
+       for(int i = 1 ; i <= n;i++){
+           a.add(new XT(i, sc.nextLine(), sc.nextLine(), Float.parseFloat(sc.nextLine()), Float.parseFloat(sc.nextLine())));
+       }
+       for(XT x : a){
+           System.out.println(x);
+       }
+   }       
+ }
