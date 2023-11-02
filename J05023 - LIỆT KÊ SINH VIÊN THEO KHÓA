@@ -1,0 +1,51 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Map.Entry;
+class SV{
+    private String msv, ten, lop, email;
+
+    public SV(String msv, String ten, String lop, String email) {
+        this.msv = msv;
+        this.ten = ten;
+        this.lop = lop;
+        this.email = email;
+    }
+
+    public String getKhoa() {
+        return lop.substring(1, 3);
+    }
+    
+    @Override
+    public String toString(){
+        return msv + " " + ten + " " + lop + " " + email;
+    }
+
+}
+public class Myjava1{       
+      public static void main(String[] args) throws IOException{
+      //Scanner sc = new Scanner(new File("/Users/anhduc/NetBeansProjects/myjava1/src/myjava1/DATA.in"));
+      Scanner sc = new Scanner(System.in);
+      ArrayList<SV> a = new ArrayList<>();
+      int n = Integer.parseInt(sc.nextLine());
+      for(int i = 1 ; i <= n;i++){
+          a.add(new SV(sc.nextLine(), sc.nextLine(), sc.nextLine(), sc.nextLine()));
+      }
+      int q = Integer.parseInt(sc.nextLine());
+      while(q-- > 0){
+          String khoa = sc.nextLine();
+          System.out.println("DANH SACH SINH VIEN KHOA " + khoa + ":" );
+          for(int i = 0 ; i < a.size();i++){
+              if(khoa.substring(2).equals(a.get(i).getKhoa())){
+                  System.out.println(a.get(i));
+              }
+          }
+      }
+    }
+ }
