@@ -1,0 +1,51 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Map.Entry;
+public class Myjava1{
+       public static String change(String s){
+           String arr[] = s.trim().split("\\s+");
+           String ans = "";
+           for(int i = 0 ; i < arr.length;i++){
+               if(i == 0){
+                   ans += arr[i].toUpperCase().charAt(0);
+                   for(int j = 1 ; j < arr[i].length();j++){
+                       ans += arr[i].toLowerCase().charAt(j);
+                   }
+               }
+               else{
+                   for(int j = 0 ; j < arr[i].length();j++){
+                       ans += arr[i].toLowerCase().charAt(j);
+                   }
+               }
+               if(i != arr.length - 1) ans += " ";
+           }
+           return ans;
+       }
+       public static void main(String[] args) throws IOException{
+       //Scanner sc = new Scanner( new File("ONLINE.in"));
+       Scanner sc = new Scanner(System.in);
+       ArrayList<String> a = new ArrayList<String>();
+       String ans = "";
+       while(sc.hasNext()){
+           String s = sc.next();
+           if(s.charAt(s.length() - 1) == '.' || s.charAt(s.length() - 1) == '?' || s.charAt(s.length() - 1) == '!'){
+               ans += s.substring(0, s.length() - 1);
+               a.add(ans);
+               ans = "";
+           }
+           else{
+               ans += s + " ";
+           }
+       }
+           for(String x : a){
+               System.out.println(change(x));
+           }
+       }  
+ }
