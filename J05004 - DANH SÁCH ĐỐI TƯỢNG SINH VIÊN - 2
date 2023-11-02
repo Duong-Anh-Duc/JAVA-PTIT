@@ -1,0 +1,56 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
+class SV{
+    private int msv;
+    private String ten, lop, ns;
+    private float gpa;
+
+    public SV(int msv, String ten, String lop, String ns, float gpa) {
+        this.msv = msv;
+        this.ten = ten;
+        this.lop = lop;
+        this.ns = ns;
+        this.gpa = gpa;
+    }
+    public String getNS(){
+        StringBuilder sb = new StringBuilder(ns);
+        if(sb.charAt(1) == '/') sb.insert(0, 0);
+        if(sb.charAt(4) == '/') sb.insert(3, 0);
+        return sb.toString();
+    }
+    public String getTEN(){
+        String ans = "";
+        String arr[] = ten.trim().split("\\s+");
+        for(int i = 0 ; i < arr.length;i++){
+            ans += arr[i].toUpperCase().charAt(0);
+            for(int j = 1 ; j < arr[i].length();j++){
+                ans += arr[i].toLowerCase().charAt(j);
+            }
+            if(i != arr.length - 1) ans += " ";
+        }
+        return ans;
+    }
+    @Override
+    public String toString(){
+        return "B20DCCN" + String.format("%03d", msv) + " " + getTEN() + " " + lop + " " + getNS() + " " + String.format("%.2f", gpa);
+    }
+}
+public class Myjava1{
+       public static void main(String[] args) throws IOException, FileNotFoundException{
+       Scanner sc = new Scanner(System.in);
+       ArrayList<SV> a = new ArrayList<>();
+       int n = Integer.parseInt(sc.nextLine());
+       for(int i = 1 ; i <= n;i++){
+           a.add(new SV(i, sc.nextLine(), sc.nextLine(), sc.nextLine(), Float.parseFloat(sc.nextLine())));
+       }
+       for(SV x : a){
+           System.out.println(x);
+       }
+   }       
+ }
