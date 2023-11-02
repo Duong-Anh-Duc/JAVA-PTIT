@@ -1,0 +1,50 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.math.*;
+class BXH implements Comparable<BXH>{
+    private String ten;
+    private int ld, sm;
+
+    public BXH(String ten, int ld, int sm) {
+        this.ten = ten;
+        this.ld = ld;
+        this.sm = sm;
+    }
+    @Override
+    public String toString(){
+        return ten + " " + ld + " " + sm;
+    }
+
+    @Override
+    public int compareTo(BXH o) {
+        if(ld != o.ld) return o.ld - ld;
+        else{
+            if(sm != o.sm) return sm - o.sm;
+            return ten.compareTo(o.ten);
+        }
+    }
+    
+}
+public class Myjava1{      
+      public static void main(String[] args) throws IOException {
+        //Scanner sc = new Scanner(new File("/Users/anhduc/NetBeansProjects/myjava1/src/myjava1/DATA.in"));
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine());
+        ArrayList<BXH> a = new ArrayList<>();
+        for(int i = 1 ; i <= n;i++){
+            String s = sc.nextLine();
+            String t = sc.nextLine();
+            String arr[] = t.split("\\s+");
+            a.add(new BXH(s, Integer.parseInt(arr[0]), Integer.parseInt(arr[1])));
+        }
+        Collections.sort(a);
+        for(BXH x : a){
+            System.out.println(x);
+        }
+    }
+ }
