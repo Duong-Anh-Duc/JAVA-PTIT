@@ -1,0 +1,83 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.math.*;
+class SP implements Comparable<SP>{
+    private int mmh;
+    private String tmh;
+    private long sl, dg;
+
+    public SP(int mmh, String tmh, long sl, long dg) {
+        this.mmh = mmh;
+        this.tmh = tmh;
+        this.sl = sl;
+        this.dg = dg;
+    }
+    public int getCk(){
+        if(sl > 10) return 5;
+        else if(sl >= 8 && sl <= 10) return 2;
+        else if(sl >= 5 && sl < 8) return 1;
+        return 0;
+    }
+    public long getTck(){
+        return dg * sl * (1l * getCk()) / 100;
+    }
+    public long getTt(){
+        return dg * sl - getTck();
+    }
+    public String getMmh(){
+        String arr[] = tmh.trim().split("\\s+");
+        String ma = "";
+        ma += arr[0].toUpperCase().charAt(0);
+        ma += arr[1].toUpperCase().charAt(0);
+        return ma + String.format("%02d", mmh);
+    }
+    @Override
+    public String toString(){
+        return getMmh() + " " + tmh + " " + getTck() + " " + getTt();
+    }
+
+    @Override
+    public int compareTo(SP o) {
+       return (int)(o.getTck() - getTck());
+    }
+}
+public class Myjava1{
+     public static String change(String s){
+         String arr[] = s.trim().split("\\s+");
+         String ans = "";
+         ans += arr[0].toUpperCase().charAt(0);
+         ans += arr[1].toUpperCase().charAt(0);
+        return ans;
+     }
+     public static void main(String[] args) throws IOException, ClassNotFoundException {
+     Scanner sc = new Scanner(System.in);
+     //Scanner sc = new Scanner(new File("/Users/anhduc/NetBeansProjects/myjava1/src/myjava1/DATA.in"));
+     int n = Integer.parseInt(sc.nextLine());
+     ArrayList<SP> a = new ArrayList<>();
+     HashMap<String, Integer> map = new HashMap<>();
+     for(int i = 1 ; i <= n;i++){
+        String tmh = sc.nextLine();
+        long sl = Long.parseLong(sc.nextLine());
+        long dg = Long.parseLong(sc.nextLine());
+        if(!map.containsKey(change(tmh))){
+            int ma = 1;
+            a.add(new SP(ma, tmh, sl, dg));
+            map.put(change(tmh), 1);
+        }
+        else{
+            int ma = map.get(change(tmh)) + 1;
+            a.add(new SP(ma, tmh, sl, dg));
+            map.put(change(tmh), ma);
+        }
+     }
+     Collections.sort(a);
+     for(SP x : a){
+         System.out.println(x);
+     }
+    }
+ }
