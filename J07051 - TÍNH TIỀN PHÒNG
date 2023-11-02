@@ -1,0 +1,83 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
+class KH implements Comparable<KH>{
+    private int mkh, dv;
+    private String ten, sp, st, end;
+
+    public KH(int mkh, String ten, String sp, String st, String end, int dv){
+        this.mkh = mkh;
+        this.dv = dv;
+        this.ten = ten;
+        this.sp = sp;
+        this.st = st;
+        this.end = end;
+    }
+    public String getMKH(){
+        return "KH" + String.format("%02d", mkh);
+    }
+    public String getTEN(){
+        String ans = "";
+        String arr[] = ten.trim().toLowerCase().split("\\s+");
+        for(int i = 0 ; i < arr.length;i++){
+            ans += arr[i].toUpperCase().charAt(0);
+            for(int j = 1 ; j < arr[i].length();j++){
+                ans += arr[i].toLowerCase().charAt(j);
+            }
+            if(i != arr.length - 1) ans += " ";
+        }
+        return ans;
+    }
+    public String getST(){
+        StringBuilder sb = new StringBuilder(st.trim());
+        if(sb.charAt(1) == '/') sb.insert(0, 0);
+        if(sb.charAt(4) == '/') sb.insert(3, 0);
+        return sb.toString().trim();
+    }
+    public String getEND(){
+        StringBuilder sb = new StringBuilder(end.trim());
+        if(sb.charAt(1) == '/') sb.insert(0, 0);
+        if(sb.charAt(4) == '/') sb.insert(3, 0);
+        return sb.toString().trim();
+    }
+    public long getStay(){
+        String y1 = getST().substring(6), d1 = getST().substring(0, 2), m1 = getST().substring(3, 5);
+        String y2 = getEND().substring(6), d2 = getEND().substring(0, 2), m2 = getEND().substring(3, 5);
+        LocalDate den = LocalDate.of(Integer.parseInt(y1), Integer.parseInt(m1), Integer.parseInt(d1));
+        LocalDate roi = LocalDate.of(Integer.parseInt(y2), Integer.parseInt(m2), Integer.parseInt(d2));
+        return ChronoUnit.DAYS.between(den, roi) + 1;
+    }
+    public int getTong(){
+        if(sp.charAt(0) == '1') return (int) (25 * getStay() + dv);
+        else if(sp.charAt(0) == '2') return (int) (34 * getStay() + dv);
+        else if(sp.charAt(0) == '3') return (int) (50 * getStay() + dv);
+        return (int) (80 * getStay() + dv);
+    }
+    @Override
+    public String toString(){
+        return getMKH() + " " + getTEN() + " " + sp.trim() + " " + getStay() + " " + getTong();
+    }
+    @Override
+    public int compareTo(KH orther){
+        return orther.getTong() - getTong();
+    }
+}
+public class Myjava1{
+       public static void main(String[] args) throws IOException, FileNotFoundException{
+       Scanner sc = new Scanner(new File("KHACHHANG.in"));
+       int n = Integer.parseInt(sc.nextLine());
+       ArrayList<KH> a = new ArrayList<>();
+       for(int i = 1 ; i <= n;i++){
+           a.add(new KH(i, sc.nextLine(),sc.nextLine(), sc.nextLine(), sc.nextLine(),Integer.parseInt(sc.nextLine())));
+       }
+       Collections.sort(a);
+       for(KH x : a){
+           System.out.println(x);
+       }
+   }       
+ }
