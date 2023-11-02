@@ -1,0 +1,48 @@
+package myjava1;
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.lang.Math;
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Stack;
+import java.util.Vector;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.StringTokenizer;
+class Pair{
+    Integer x;
+    Integer y;
+}
+public class Myjava1 {
+   
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        sc.nextLine();
+        while(t-- > 0){
+           int n = sc.nextInt();
+           Stack<Integer> st = new Stack<>();
+           int a[] = new int[n];
+           for(int i = 0 ; i < n;i++){
+               a[i] = sc.nextInt();
+           }
+           for(int i = 0 ; i < n;i++){
+               while(!st.isEmpty() && a[i] >= a[st.peek()]){
+                   st.pop();
+               }
+               if(st.empty()) System.out.print(i + 1 + " ");
+               else{
+                   System.out.print(i - st.peek() + " ");
+               }
+                 st.add(i);
+           }
+            System.out.println("");
+        }
+    }
+}
