@@ -1,0 +1,62 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Map.Entry;
+class GB implements Comparable<GB>{
+    private int mmh;
+    private String tmh, dvt;
+    private int dg, sl;
+
+    public GB(int mmh, String tmh, String dvt, int dg, int sl) {
+        this.mmh = mmh;
+        this.tmh = tmh;
+        this.dvt = dvt;
+        this.dg = dg;
+        this.sl = sl;
+    }
+    public String getMmh(){
+        return "MH" + String.format("%02d", mmh);
+    }
+    public int PVC(){
+        int pvc = Math.round(dg * sl * 1f / 20f);
+        return pvc;
+    }
+    public int TT(){
+        int tt = Math.round((dg * sl * 1f + (PVC() + 0f)));
+        return tt;
+    }
+    public int GB(){
+        int gb = (round(((TT() * 1f + TT() * 1f / 50f) / sl)) + 99) / 100 * 100;
+        return gb;
+    }
+    @Override
+    public String toString(){
+        return getMmh() + " " + tmh + " " + dvt + " " + PVC() + " " + TT() + " " + GB();
+     }
+
+    @Override
+    public int compareTo(GB o) {
+       return o.GB() - GB();
+    }
+}
+public class Myjava1{       
+      public static void main(String[] args) throws IOException{
+      //Scanner sc = new Scanner(new File("/Users/anhduc/NetBeansProjects/myjava1/src/myjava1/DATA.in"));
+      Scanner sc = new Scanner(System.in);
+      int n = Integer.parseInt(sc.nextLine());
+      ArrayList<GB> a = new ArrayList<>();
+      for(int i = 1 ; i <= n;i++){
+          a.add(new GB(i, sc.nextLine(), sc.nextLine(), Integer.parseInt(sc.nextLine()), Integer.parseInt(sc.nextLine())));
+      }
+      Collections.sort(a);
+      for(GB x : a){
+          System.out.println(x);
+      }
+    }
+ }
