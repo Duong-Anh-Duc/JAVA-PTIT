@@ -1,0 +1,53 @@
+package myjava1;
+import java.util.*;
+import java.math.*;
+class KH {
+    private String mdh;
+    private long sl;
+
+    public KH(String mdh, long sl) {
+        this.mdh = mdh;
+        this.sl = sl;
+    }
+    public String getHang(){
+        String hang = mdh.substring(3);
+        if(hang.equals("BP")) return "British Petro";
+        else if(hang.equals("ES")) return "Esso";
+        else if(hang.equals("SH")) return "Shell";
+        else if(hang.equals("CA")) return "Castrol";
+        else if(hang.equals("MO")) return "Mobil";
+        else return "Trong Nuoc";
+    }
+      public long getGia(){
+        if(mdh.charAt(0) == 'X') return 128000;
+        else if(mdh.charAt(0) == 'D') return 11200;
+        else return 9700;
+    }
+    public long getThue(){
+        if(getHang().equals("Trong Nuoc")) return 0;
+        else if(mdh.charAt(0) == 'X') return getGia() * sl * 3 / 100;
+        else if(mdh.charAt(0) == 'D') return getGia() * sl * 35 / 1000;
+        else return getGia() * sl * 2 / 100;
+    }
+    public long getTt(){
+        return sl * getGia() + getThue();
+    }
+    @Override
+    public String toString(){
+        return mdh + " " + getHang() + " " + getGia() + " " + getThue() + " " + getTt();
+    }
+}
+public class Myjava1{
+    
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine());
+        ArrayList<KH> a = new ArrayList<>();
+        for(int i = 1 ; i <= n;i++){
+            a.add(new KH(sc.next(), Long.parseLong(sc.next())));
+        }
+        for(KH x : a){
+            System.out.println(x);
+        }
+        }
+    }        
