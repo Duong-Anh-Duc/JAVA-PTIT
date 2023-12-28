@@ -1,0 +1,45 @@
+package myjava1;
+import java.util.*;
+import java.math.*;
+class CLB{
+    private String ma, ten;
+    private long gv;
+
+    public CLB(String ma, String ten, long gv) {
+        this.ma = ma;
+        this.ten = ten;
+        this.gv = gv;
+    }
+    public String getMa(){
+        return ma;
+    }
+    public String getTen(){
+        return ten;
+    }
+    public long getGv(){
+        return gv;
+    }
+    
+}
+public class Myjava1{
+    
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine());
+        ArrayList<CLB> a = new ArrayList<>();
+        for(int i = 1 ; i <= n;i++){
+            a.add(new CLB(sc.nextLine(), sc.nextLine(), Long.parseLong(sc.nextLine())));
+        }
+        int q = Integer.parseInt(sc.nextLine());
+        while(q-- > 0){
+            String tmp = sc.next();
+            String ten = tmp.substring(1, 3);
+            long sv = Long.parseLong(sc.next());
+            for(CLB x : a){
+                if(x.getMa().equals(ten)){
+                    System.out.println(tmp + " " + x.getTen() + " " + sv * x.getGv());
+                }
+            }
+        }
+        }
+    }        
