@@ -1,0 +1,25 @@
+package myjava1;
+import java.util.*;
+public class Myjava1{
+    public static int[] dp;
+    public static int MAX = 1000000;
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        dp = new int[1000001];
+        
+        for(int i = 2 ; i <= MAX / 2;i++){
+            for(int j = i * 2; j <= MAX;j += i){
+                dp[j] += i;
+            }
+        }
+         int a = sc.nextInt(), b = sc.nextInt();
+         int cnt = 0;
+         for(int i = a ; i <= b;i++){
+             if(dp[i] > i){
+                 cnt++;
+             }
+         }
+         System.out.println(cnt);
+    }   
+}
