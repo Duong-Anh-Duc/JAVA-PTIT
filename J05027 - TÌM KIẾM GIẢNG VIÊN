@@ -61,7 +61,6 @@ public class Myjava1{
           return false;
       }
       public static void main(String[] args) throws IOException{
-      //Scanner sc = new Scanner(new File("/Users/anhduc/NetBeansProjects/myjava1/src/myjava1/DATA.in"));
       Scanner sc = new Scanner(System.in);
       int n = Integer.parseInt(sc.nextLine());
       ArrayList<GV> a = new ArrayList<>();
