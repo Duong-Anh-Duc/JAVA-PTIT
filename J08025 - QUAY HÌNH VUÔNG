@@ -1,0 +1,89 @@
+package myjava1;
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.lang.Math;
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Stack;
+import java.util.Vector;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.StringTokenizer;
+class Pair{
+    String x;
+    Integer y;
+}
+public class Myjava1 {
+    public static String changeleft(String s){
+        String ans = "";
+        ans += s.charAt(3);
+        ans += s.charAt(0);
+        ans += s.charAt(2);
+        ans += s.charAt(4);
+        ans += s.charAt(1);
+        ans += s.charAt(5);
+        return ans;
+    }
+    public static String changeright(String s){
+        String ans = "";
+        ans += s.charAt(0);
+        ans += s.charAt(4);
+        ans += s.charAt(1);
+        ans += s.charAt(3);
+        ans += s.charAt(5);
+        ans += s.charAt(2);
+        return ans;
+    }
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        sc.nextLine();
+        while(t-- > 0){
+           String st = "";
+           String en = "";
+           String arr[] = sc.nextLine().split("\\s+");
+           String arr1[] = sc.nextLine().split("\\s+");
+           for(String x : arr){
+              st += x;
+           }
+           for(String x : arr1){
+              en += x;
+           }
+           HashSet<String> hs = new HashSet<>();
+           Queue<Pair> q = new LinkedList<>();
+           Pair tmp = new Pair();
+           tmp.x = st;
+           tmp.y = 0;
+           q.add(tmp);
+           hs.add(tmp.x);
+           while(!q.isEmpty()){
+               tmp = q.peek();
+               q.poll();
+               if(tmp.x.equals(en)){
+                   System.out.println(tmp.y);
+                   break;
+               }
+               if(!hs.contains(changeleft(tmp.x))){
+               Pair ans = new Pair();
+               ans.x = changeleft(tmp.x);
+               ans.y = tmp.y + 1;
+               q.add(ans);
+               hs.add(changeleft(tmp.x));
+               }
+               if(!hs.contains(changeright(tmp.x))){
+                Pair ans = new Pair();
+                ans.x = changeright(tmp.x);
+                ans.y = tmp.y + 1;
+                q.add(ans);
+                hs.add(changeright(tmp.x));
+               }
+           }
+        }
+}
+}
