@@ -1,0 +1,24 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.math.*;
+public class Myjava1 {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        Scanner sc = new Scanner(new File("STRING.in"));
+        int n = Integer.parseInt(sc.nextLine());
+        while(n-- > 0){
+        String s1 = sc.nextLine();
+        String s2 = sc.nextLine();
+        for(int i = 0 ; i < s1.length() - s2.length() + 1;i++){
+            if(s2.equals(s1.substring(i, i + s2.length()))){
+                System.out.print(i + 1 + " ");
+            }
+        }
+        System.out.println("");
+    }
+    }
+}
