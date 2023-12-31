@@ -1,0 +1,63 @@
+package myjava1;
+import java.util.Scanner;
+public class Myjava1{
+       public static boolean check(String s){
+           int x = Integer.parseInt(s.substring(0, 2));
+           int y = Integer.parseInt(s.substring(5, 7));
+           int z = Integer.parseInt(s.substring(10));
+           if(x < 10 || y < 10 || z < 10) return false;
+           if(s.charAt(3) == '-' && x - y == z) return true;
+           return s.charAt(3) == '+' && x + y == z;
+       }
+       public static char []sign = {'+', '-'};
+       public static String s;
+       public static boolean ok;
+       public static String change(String s, int index, char x){
+           return s.substring(0, index) + x + s.substring(index + 1);
+       }
+       public static void Try(int i){
+           if(ok) return;
+           if(i == s.length()){
+               if(check(s)){
+               ok = true;
+               System.out.println(s);
+           }
+               return;
+           }
+           if(s.charAt(i) == '?'){
+               if(i == 3){
+                   for(int j = 0 ; j <= 1;j++){
+                       s = change(s, i, sign[j]);
+                       Try(i + 1);
+                   }
+               }
+               else{
+                   for(int j = 0 ; j <= 9;j++){
+                       s = change(s, i, (char) (j + '0'));
+                       Try(i + 1);
+                   }
+               }
+               s = change(s, i, '?');
+           }
+           else Try(i + 1);
+       }
+       public static void main(String[] args){
+       Scanner sc = new Scanner(System.in);
+       int t = Integer.parseInt(sc.nextLine());
+       while(t-- > 0){
+            s = sc.nextLine();
+            ok = false;
+            boolean ans = true;
+            if(s.charAt(3) == '/' || s.charAt(3) == '*'){
+                System.out.println("WRONG PROBLEM!");
+                ans = false;
+            }
+            if(ans){
+                Try(0);
+                if(!ok){
+                    System.out.println("WRONG PROBLEM!");
+                }
+            }
+       }
+   }       
+ }
