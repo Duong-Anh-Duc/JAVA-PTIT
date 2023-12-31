@@ -1,0 +1,83 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.math.*;
+class SinhVien{
+    private String msv, name, sdt, stt;
+    public SinhVien(String msv, String name, String sdt, String stt) {
+        this.msv = msv;
+        this.name = name;
+        this.sdt = sdt;
+        this.stt = stt;
+    }
+    public String getMsv() {
+        return msv;
+    }
+    public String getName() {
+        return name;
+    }
+    public String getSdt() {
+        return sdt;
+    }
+    public String getStt() {
+        return stt;
+    }   
+}
+class Lop extends SinhVien implements Comparable<Lop>{
+    private String btl;
+    public Lop(String msv, String name, String sdt, String stt, String btl) {
+        super(msv, name, sdt, stt);
+        this.btl = btl;       
+    }
+
+    public String getBtl() {
+        return btl;
+    }
+    
+    @Override
+    public String toString(){
+        return this.getMsv() + " " + this.getName() + " " + this.getSdt() + " " + this.getStt() + " " + this.btl;
+    }
+
+    @Override
+    public int compareTo(Lop o) {
+        return this.getMsv().compareTo(o.getMsv());
+    }
+}
+public class Myjava1{
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+      Scanner sc = new Scanner(System.in);
+      int n = Integer.parseInt(sc.next()), m = Integer.parseInt(sc.next());
+      sc.nextLine();
+      ArrayList<SinhVien> a = new ArrayList<>();
+      for(int i = 1 ; i <= n;i++){
+          String msv = sc.nextLine();
+          String name = sc.nextLine();
+          String sdt = sc.nextLine();
+          String nhom = sc.nextLine();
+          a.add(new SinhVien(msv, name, sdt, nhom));
+      }
+      ArrayList<Lop> res = new ArrayList<>();
+      for(int i = 1 ; i <= m;i++){
+          String btl = sc.nextLine();
+          String ok = Integer.toString(i);
+          for(int j = 0 ; j < a.size();j++){
+              if(ok.equals(a.get(j).getStt())){
+                  String msv = a.get(j).getMsv();
+                  String name = a.get(j).getName();
+                  String sdt = a.get(j).getSdt();
+                  String stt = a.get(j).getStt();
+                  res.add(new Lop(msv, name, sdt, stt, btl));
+              }
+          }
+      }
+      Collections.sort(res);
+      for(int i = 0 ; i < res.size();i++){
+          System.out.println(res.get(i));
+      }
+    }
+}
