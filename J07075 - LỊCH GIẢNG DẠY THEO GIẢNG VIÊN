@@ -1,0 +1,84 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.math.*;
+class LGD implements Comparable<LGD>{
+    private int mn;
+    private String mmh;
+    private int day, kip;
+    private String ten, phong;
+
+    public LGD(int mn, String mmh, int day, int kip, String ten, String phong) {
+        this.mn = mn;
+        this.mmh = mmh;
+        this.day = day;
+        this.kip = kip;
+        this.ten = ten;
+        this.phong = phong;
+    }
+    public String getPhong(){
+        return phong;
+    }
+    public String getMa(){
+        return "HP" + String.format("%03d", mn);
+    }
+    public int getDay(){
+        return day;
+    }
+    public int getKip(){
+        return kip;
+    }
+    public String getTen(){
+        return ten;
+    }
+    public String getMmh(){
+        return mmh;
+    }
+    @Override
+    public int compareTo(LGD o) {
+        if(day != o.day){
+            return day - o.day;
+        }
+        else{
+        if(kip != o.kip){
+        return kip - o.kip;
+        }
+        else return ten.compareTo(o.ten);
+}
+}
+}
+public class Myjava1{
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        Scanner sc1 = new Scanner(new File("MONHOC.in"));
+        int n = Integer.parseInt(sc1.nextLine());
+        HashMap<String, String> map = new HashMap<>();
+        for(int i = 1 ; i <= n;i++){
+            String mmh = sc1.nextLine(), tmh = sc1.nextLine();
+            int stc = Integer.parseInt(sc1.nextLine());
+            map.put(mmh, tmh);
+        }
+        Scanner sc2 = new Scanner(new File("LICHGD.in"));
+        int m = Integer.parseInt(sc2.nextLine());
+        ArrayList<LGD> b = new ArrayList<>();
+        for(int i = 1 ; i <= m;i++){
+            String mmh = sc2.nextLine();
+            int day = Integer.parseInt(sc2.nextLine());
+            int kip = Integer.parseInt(sc2.nextLine());
+            String ten = sc2.nextLine();
+            String phong = sc2.nextLine();
+            b.add(new LGD(i, mmh, day, kip, ten, phong));
+        }
+        String res = sc2.nextLine();
+        System.out.println("LICH GIANG DAY GIANG VIEN "+ res + ":");
+        Collections.sort(b);
+        for(int i = 0 ; i < b.size();i++){
+            if(res.equals(b.get(i).getTen())){
+                System.out.println(b.get(i).getMa() + " " + map.get(b.get(i).getMmh()) + " " + b.get(i).getDay() + " " + b.get(i).getKip() + " " + b.get(i).getPhong());
+            }
+        }
+    }
+}
