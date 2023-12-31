@@ -1,0 +1,44 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.math.*;
+public class Myjava1{
+      public static int cnt[] = new int[15];
+      public static boolean check(){
+          for(int i = 0 ; i <= 9;i++){
+              if(cnt[i] == 0) return false;
+          }
+          return true;
+      }
+      public static void main(String[] args) throws IOException{
+      Scanner sc = new Scanner(System.in);
+      int t = sc.nextInt();
+      while(t-- > 0){
+         BigInteger n = sc.nextBigInteger();
+         if(n.toString().equals("0")){
+             System.out.println("Impossible");
+         }
+         else{
+             for(int i = 0 ; i <= 9;i++){
+                 cnt[i] = 0;
+             }
+             BigInteger ans = new BigInteger("1");
+             while(true){
+                BigInteger res = n.multiply(ans);
+                for(char x : res.toString().toCharArray()){
+                    cnt[x - '0'] = 1;
+                }
+                if(check()){
+                    System.out.println(res);
+                    break;
+                }
+                ans = ans.add(new BigInteger("1"));              
+             }
+         }
+      }
+    }
+    }
