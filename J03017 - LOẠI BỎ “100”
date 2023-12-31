@@ -1,0 +1,41 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.math.*;
+class pair{
+    public Character x;
+    public Integer y;
+
+    public pair(Character x, Integer y) {
+        this.x = x;
+        this.y = y;
+    }
+    
+}
+public class Myjava1{      
+      public static void main(String[] args) throws IOException{
+      Scanner sc = new Scanner(System.in);
+      int t = Integer.parseInt(sc.nextLine());
+      while(t-- > 0){
+          ArrayList<pair> a = new ArrayList<>();
+          String s = sc.nextLine();
+          int res = 0, ans = 0;
+          a.add(new pair(' ', -1));
+          for(int i = 0 ; i < s.length();i++){
+              a.add(new pair(s.charAt(i), i));
+              while(a.size() >= 3 && a.get(a.size() - 1).x == '0' && a.get(a.size() - 2).x == '0' && a.get(a.size() - 3).x == '1'){
+                  a.remove(a.size() - 1);
+                  a.remove(a.size() - 1);
+                  a.remove(a.size() - 1);
+              }
+              res = max(res, i - a.get(a.size() - 1).y);
+          }
+          System.out.println(res);
+      }
+      
+      }
+ }
