@@ -1,0 +1,81 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.math.*;
+class WordSet{
+    public static int cnt = 0;
+    private TreeSet<String> set;
+    public WordSet(TreeSet<String> set){
+        this.set = set;
+    }
+    public WordSet(String s) throws FileNotFoundException{
+        set = new TreeSet<>();
+        Scanner sc;
+        if(cnt == 0){
+           sc = new Scanner(new File("DATA1.in")); 
+           ++cnt;
+        }
+        else{
+           sc = new Scanner(new File("DATA2.in")); 
+        }
+        while(sc.hasNext()){
+            String ans = sc.nextLine();
+            String arr[] = ans.trim().toLowerCase().split("\\s+");
+            for(String x : arr){
+                set.add(x);
+            }
+        }
+    }
+    public WordSet union(WordSet b){
+        TreeSet<String> a = new TreeSet<>();
+        for(String x : this.set){
+            a.add(x);
+        }
+        for(String x : b.set){
+            a.add(x);
+        }
+        return new WordSet(a);
+    }
+    public WordSet intersection(WordSet b){
+        TreeSet<String> a = new TreeSet<>();
+        for(String x : b.set){
+            if(this.set.contains(x)){
+                a.add(x);
+            }
+        }
+        return new WordSet(a);
+    }
+    @Override
+    public String toString(){
+        String ans = "";
+        for(String x : set){
+            ans += x;
+            ans += " ";
+        }
+        return ans;
+    }
+}
+public class Myjava1{      
+     public static void main(String[] args) throws IOException {
+        WordSet s1 = new WordSet("DATA1.in");
+        WordSet s2 = new WordSet("DATA2.in");
+        System.out.println(s1.union(s2));
+        System.out.println(s1.intersection(s2));
+    }
+     public static void main5248291(String[] args) throws IOException {
+        WordSet s1 = new WordSet("DATA1.in");
+        WordSet s2 = new WordSet("DATA2.in");
+        System.out.println(s1.union(s2));
+        System.out.println(s1.intersection(s2));
+    }
+     public static void main3504124(String[] args) throws IOException {
+        WordSet s1 = new WordSet("DATA1.in");
+        WordSet s2 = new WordSet("DATA2.in");
+        System.out.println(s1.union(s2));
+        System.out.println(s1.intersection(s2));
+    }
+ }
