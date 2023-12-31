@@ -1,0 +1,73 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.math.*;
+class XH{
+    private String ma, ten, xl;
+
+    public XH(String ma, String ten, String xl) {
+        this.ma = ma;
+        this.ten = ten;
+        this.xl = xl;
+    }
+    public String getXl(){
+        return xl;
+    }
+    public String getMa(){
+        return ma;
+    }
+    @Override
+    public String toString(){
+        return ma + " " + ten + " ";
+    }
+}
+public class Myjava1 {
+    public static boolean check(String a, String b){
+        String arr1[] = a.split("\\s+");
+        String arr2[] = b.split("\\s+");
+        return arr1[0].equals(arr2[0]);
+    }
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine());
+        ArrayList<XH> a = new ArrayList<>();
+        ArrayList<String> ans = new ArrayList<>();
+        for(int i = 1 ; i <= n;i++){
+            a.add(new XH(sc.nextLine(), sc.nextLine(), sc.nextLine()));
+        }
+        int m = Integer.parseInt(sc.nextLine());
+        for(int i = 1 ; i <= m;i++){
+            String ma = sc.next();
+            long sln = Long.parseLong(sc.next());
+            long dgn = Long.parseLong(sc.next());
+            long slx = Long.parseLong(sc.next());            
+            for(int j = 0 ; j < a.size();j++){
+                if(ma.equals(a.get(j).getMa())){
+                    String tmp = a.get(j).toString();
+                    tmp += Long.toString(sln * dgn) + " ";
+                    if(a.get(j).getXl().equals("A")){
+                       tmp += Long.toString(dgn * slx + (dgn * slx) * 8 / 100);
+                    }
+                    else if(a.get(j).getXl().equals("B")){
+                         tmp += Long.toString(dgn * slx + (dgn * slx) * 5 / 100);
+                    }
+                    else tmp += Long.toString(dgn * slx + (dgn * slx) * 2 / 100);
+                    ans.add(tmp);
+                    break;
+                }
+            }
+        }
+        for(int i = 0 ; i < ans.size();i++){
+            for(int j = 0 ; j < a.size();j++){
+                if(check(a.get(j).toString(), ans.get(i))){
+                    System.out.println(ans.get(i));
+                    break;
+                }
+            }
+        }
+    }
+}
