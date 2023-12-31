@@ -1,0 +1,36 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.math.*;
+public class Myjava1{
+     public static boolean check(String s){
+         StringBuilder sb = new StringBuilder(s);
+         return s.equals(sb.reverse().toString());
+     }
+     public static void main(String[] args) throws IOException, ClassNotFoundException {
+     Scanner sc = new Scanner(System.in);
+     LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
+     int res = Integer.MIN_VALUE;
+     while(sc.hasNext()){
+         String s = sc.next();
+         if(check(s)){
+             res = max(res, s.length());
+             if(!map.containsKey(s)){
+                 map.put(s, 1);
+             }
+             else{
+                 map.put(s, map.get(s) + 1);
+             }
+         }
+     }
+     for(Map.Entry<String, Integer> entry : map.entrySet()){
+         if(entry.getKey().length() == res){
+             System.out.println(entry.getKey() + " " + entry.getValue());
+         }
+     }
+    }
+ }
