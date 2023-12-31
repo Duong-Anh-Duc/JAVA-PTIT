@@ -1,0 +1,44 @@
+package myjava1;
+import java.io.*;
+import java.util.*;
+import java.math.*;
+class WordSet{
+    private TreeSet<String> set;
+    public WordSet(TreeSet<String> set) {
+        this.set = set;
+    }
+    public WordSet(String s) throws FileNotFoundException{
+        Scanner sc = new Scanner(new File(s));
+        set = new TreeSet<>();
+        while(sc.hasNext()){
+            String tmp = sc.next().toLowerCase();
+            set.add(tmp);
+        }
+    }
+    public WordSet difference(WordSet a){
+        TreeSet<String> b = new TreeSet<>();
+        for(String x : this.set){
+            if(!a.set.contains(x)){
+                b.add(x);
+            }
+        }
+        return new WordSet(b);
+    }
+    @Override
+    public String toString(){
+        String ans = "";
+        for(String x : set){
+            ans += x;
+            ans += " ";
+        }
+    return ans;
+}
+}
+public class Myjava1{
+   public static void main(String[] args) throws IOException {
+        WordSet s1 = new WordSet("DATA1.in");
+        WordSet s2 = new WordSet("DATA2.in");
+        System.out.println(s1.difference(s2));
+        System.out.println(s2.difference(s1));
+    }
+ }        
