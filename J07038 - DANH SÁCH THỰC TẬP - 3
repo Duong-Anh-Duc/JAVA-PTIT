@@ -1,0 +1,112 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.math.*;
+class SV implements Comparable<SV>{
+    private String msv, ten, lop, email, dn;
+    public SV(String msv, String ten, String lop, String email, String dn) {
+        this.msv = msv;
+        this.ten = ten;
+        this.lop = lop;
+        this.email = email;
+        this.dn = dn;
+    } 
+    public String getMsv(){
+        return msv;
+    }
+    public String getDn(){
+        return dn;
+    }
+    public String getName(){
+        String name = "";
+        String arr[] = ten.trim().split("\\s+");
+        for(int i = 0 ; i < arr.length;i++){
+            name += arr[i].toUpperCase().charAt(0);
+            for(int j = 1 ; j < arr[i].length();j++){
+                name += arr[i].toLowerCase().charAt(j);
+            }
+            if(i != arr.length - 1) name += " ";
+        }
+        return name;
+    }
+    @Override
+    public String toString(){
+        return msv + " " + getName() + " " + lop;
+    }
+
+    @Override
+    public int compareTo(SV o) {
+        return msv.compareTo(o.msv);
+    }
+}
+class Pair{
+    private String msv, mdn;
+    public Pair(String msv, String mdn) {
+        this.msv = msv;
+        this.mdn = mdn;
+    }
+    public String getMsv() {
+        return msv;
+    }
+
+    public String getMdn() {
+        return mdn;
+    }   
+}
+public class Myjava1{      
+      public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(new File("SINHVIEN.in"));
+        Scanner sc1 = new Scanner(new File("DN.in"));
+        Scanner sc2 = new Scanner(new File("THUCTAP.in"));
+        HashMap<String, String> map = new HashMap<>();
+        ArrayList<Pair> cur = new ArrayList<>();
+        int m = Integer.parseInt(sc2.nextLine().trim());
+        for(int i = 1 ; i <= m;i++){
+            String s = sc2.nextLine().trim();
+            String arr[] = s.split("\\s+");
+            cur.add(new Pair(arr[0], arr[1]));
+        }
+        int n = Integer.parseInt(sc.nextLine());
+        ArrayList<SV> a = new ArrayList<>();
+        for(int i = 1 ; i <= n;i++){
+            String msv = sc.nextLine().trim();
+            String ten = sc.nextLine().trim();
+            String lop = sc.nextLine().trim();
+            String email = sc.nextLine().trim();
+            String dn = map.get(msv);
+            a.add(new SV(msv, ten, lop, email, dn));
+        }
+        Collections.sort(a);
+        HashMap<String, String> map1 = new HashMap<>();
+        HashMap<String, Integer> map2 = new HashMap<>();
+        int k = Integer.parseInt(sc1.nextLine());
+        for(int i = 1 ; i <= k;i++){
+            String s1 = sc1.nextLine().trim();
+            String s2 = sc1.nextLine().trim();
+            int s3 = Integer.parseInt(sc1.nextLine().trim()); 
+            map1.put(s1, s2);
+            map2.put(s1, s3);
+        }
+        int q = Integer.parseInt(sc2.nextLine());
+        while(q-- > 0){
+            String mdn = sc2.nextLine().trim();
+            System.out.println("DANH SACH THUC TAP TAI " + map1.get(mdn) + ":");          
+            int cnt = 0;
+            if(map2.containsKey(mdn)) cnt = map2.get(mdn);
+            for(int i = 0 ; i < a.size();i++){
+                if(cnt == 0) break;
+                for(int j = 0 ; j < cur.size();j++){
+                    if(a.get(i).getMsv().equals(cur.get(j).getMsv()) && cur.get(j).getMdn().equals(mdn)){
+                        System.out.println(a.get(i));
+                        --cnt;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+ }
