@@ -80,3 +80,4 @@ public class Myjava1{
       }
     }
  }
+// Bài này lưu ý sử dụng hàm contains để check xâu con nhanh hơn mình viết hàm <3.
