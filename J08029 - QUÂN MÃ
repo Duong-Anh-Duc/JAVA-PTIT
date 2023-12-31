@@ -1,0 +1,67 @@
+package myjava1;
+import java.util.*;
+class Pair{
+    Integer x;
+    Integer y; 
+    Integer z;
+
+    public Pair(Integer x, Integer y, Integer z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+    
+}
+public class Myjava1 {
+    public static int dx[] = {-2, -2, -1, -1, 1, 1, 2, 2};
+    public static int dy[] = {-1, 1, -2, 2, -2, 2, -1, 1};
+    public static boolean vs[][];
+    public static void BFS(String st, String end){
+        int x = st.charAt(0) - '0';
+        int y = st.charAt(1) - '0';
+        int z = end.charAt(0) - '0';
+        int t = end.charAt(1) - '0';
+        Pair tmp = new Pair(x, y, 0);
+        vs[x][y] = true;
+        Queue<Pair> q = new LinkedList<>();
+        q.add(tmp);
+        while(!q.isEmpty()){
+            Pair top = q.peek(); q.poll();
+            if(top.x == z && top.y == t){
+                System.out.println(top.z);
+                break;
+            }
+            for(int i = 0 ; i < 8;i++){
+                int i1 = top.x + dx[i];
+                int j1 = top.y + dy[i];
+                if(i1 >= 1 && i1 <= 8 && j1 >= 1 && j1 <= 8 && !vs[i1][j1]){
+                    vs[i1][j1] = true;
+                    q.add(new Pair(i1, j1, top.z + 1));
+                }
+            }
+        }
+        
+    }     
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int t = Integer.parseInt(sc.nextLine());
+        while(t-- > 0){
+            String tmp1 = sc.next();
+            String tmp2 = sc.next();
+            HashMap<Character, Integer> map = new HashMap<>();
+            map.put('a', 1);map.put('b', 2);
+            map.put('c', 3);map.put('d', 4);
+            map.put('e', 5);map.put('f', 6);
+            map.put('g', 7);map.put('h', 8);
+            String st = Integer.toString(map.get(tmp1.charAt(0))) + Character.toString(tmp1.charAt(1));
+            String end = Integer.toString(map.get(tmp2.charAt(0))) + Character.toString(tmp2.charAt(1));
+            vs = new boolean[10][10];
+            for(int i = 0 ; i <= 9;i++){
+                for(int j = 0 ; j <= 9;j++){
+                    vs[i][j] = false;
+                }
+            }
+            BFS(st, end);
+        }
+    }        
+}
