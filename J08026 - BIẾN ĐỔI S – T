@@ -1,0 +1,62 @@
+package myjava1;
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.lang.Math;
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Stack;
+import java.util.Vector;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.StringTokenizer;
+class Pair{
+    Integer x;
+    Integer y;
+}
+public class Myjava1 {
+   
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int k = sc.nextInt();
+        sc.nextLine();
+        while(k-- > 0){
+           HashSet<Integer> hs = new HashSet<>();
+           Queue<Pair> q = new LinkedList();
+           int s = sc.nextInt();
+           int t = sc.nextInt();
+           Pair tmp = new Pair();
+           tmp.x = t;
+           tmp.y = 0;
+           q.add(tmp);
+           hs.add(tmp.x);
+           while(!q.isEmpty()){
+              tmp = q.peek();
+              q.poll();
+              if(tmp.x == s){
+                  System.out.println(tmp.y); 
+                  break;
+              }
+              if(!hs.contains(tmp.x + 1)){
+                  Pair ans = new Pair();
+                  ans.x = tmp.x + 1;
+                  ans.y = tmp.y + 1;
+                  hs.add(tmp.x + 1);
+                  q.add(ans);
+              }
+              if(tmp.x % 2 == 0 && !hs.contains(tmp.x / 2)){
+                  Pair ans = new Pair();
+                  ans.x = tmp.x / 2;
+                  ans.y = tmp.y + 1;
+                  hs.add(tmp.x / 2);
+                  q.add(ans);
+              }
+           }
+        }
+}
+}
