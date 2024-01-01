@@ -1,0 +1,59 @@
+package javaapplication5;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+class GV implements Comparable<GV>{
+    private int ma;
+    private String ten, mxt;
+    private double th, cm;
+    public GV(int ma, String ten, String mxt, double th, double cm) {
+        this.ma = ma;
+        this.ten = ten;
+        this.mxt = mxt;
+        this.th = th;
+        this.cm = cm;
+    }
+    public String getMa(){
+        return "GV" + String.format("%02d", ma);
+    }
+    public String getMon(){
+        if(mxt.charAt(0) == 'A') return "TOAN";
+        else if(mxt.charAt(0) == 'B') return "LY";
+        else return "HOA";
+    }
+    public double getUt(){
+        if(mxt.charAt(1) == '1') return 2;
+        else if(mxt.charAt(1) == '2') return 1.5;
+        else if(mxt.charAt(1) == '3') return 1;
+        else return 0;
+    }
+    public double getDiem(){
+        return th * 2 + cm + getUt();
+    }
+    public String getXl(){
+        if(getDiem() >= 18) return "TRUNG TUYEN";
+        return "LOAI";
+    }
+    @Override
+    public String toString(){
+        return getMa() + " " + ten + " " + getMon() + " " + String.format("%.1f", getDiem()) + " " + getXl();
+    }
+    @Override
+    public int compareTo(GV o) {
+      return Double.compare(o.getDiem(), getDiem());
+    }
+}
+public class Main{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine());
+        ArrayList<GV> a = new ArrayList<>();
+        for(int i = 1 ; i <= n;i++){
+            a.add(new GV(i, sc.nextLine(), sc.nextLine(), Double.parseDouble(sc.nextLine()), Double.parseDouble(sc.nextLine())));
+        }
+        Collections.sort(a);
+        for(GV x : a){
+            System.out.println(x);
+        }
+    } 
+}
