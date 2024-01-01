@@ -1,0 +1,63 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.math.*;
+class TD implements Comparable<TD>{
+    private int ma;
+    private String ten;
+    private double lt, th;
+    public TD(int ma, String ten, double lt, double th) {
+        this.ma = ma;
+        this.ten = ten;
+        this.lt = lt;
+        this.th = th;
+    }
+    public double getLt(){
+        if(lt > 10) lt /= 10;
+        return lt;
+    }
+    public double getTh(){
+        if(th > 10) th /= 10;
+        return th;
+    }
+    public double getTb(){
+        return (getLt() + getTh()) / 2;
+    }
+    public String getXl(){
+        if(getTb() < 5) return "TRUOT";
+        else if(getTb() >= 5 && getTb() < 8) return "CAN NHAC";
+        else if(getTb() >= 8 && getTb() <= 9.5) return "DAT";
+        else return "XUAT SAC";
+    }
+    public String getMa(){
+        return "TS" + String.format("%02d", ma);
+    }
+    @Override
+    public String toString(){
+        return getMa() + " " + ten + " " + String.format("%.2f", getTb()) + " " + getXl();
+    }
+
+    @Override
+    public int compareTo(TD o) {
+       return Double.compare(o.getTb(), getTb());
+    }
+    
+}
+public class Myjava1 {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine());
+        ArrayList<TD> a = new ArrayList<>();
+        for(int i = 1 ; i <= n;i++){
+            a.add(new TD(i, sc.nextLine(), Double.parseDouble(sc.nextLine()), Double.parseDouble(sc.nextLine())));
+        }
+        Collections.sort(a);
+        for(TD x : a){
+            System.out.println(x);
+        }
+    }
+}
