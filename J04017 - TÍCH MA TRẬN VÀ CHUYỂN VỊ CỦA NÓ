@@ -1,0 +1,65 @@
+package myjava1;
+import java.util.*;
+import java.io.File;
+import static java.lang.Math.*;
+class Matrix{
+    private int n, m;
+    private int [][] a;
+    public Matrix(int n, int m){
+        this.n = n;
+        this.m = m;
+        a = new int[n][m];
+    }
+    public void nextMatrix(Scanner sc){
+        for(int i = 0 ; i < n;i++){
+            for(int j = 0 ; j < m;j++){
+                this.a[i][j] = sc.nextInt();
+            }
+        }
+    }
+    public Matrix trans(){
+        Matrix ans = new Matrix(this.m, this.n);
+        for(int i = 0 ; i < m;i++){
+            for(int j = 0 ; j < n;j++){
+                ans.a[i][j] = this.a[j][i];
+            }
+        }
+        return ans;
+    }
+    public Matrix mul(Matrix orther){
+        Matrix res = new Matrix(this.n, orther.m);
+        for(int i = 0 ; i < this.n;i++){
+            for(int j = 0 ; j < orther.m;j++){
+               res.a[i][j] = 0;
+               for(int k = 0 ; k < this.m;k++){
+                   res.a[i][j] += this.a[i][k] * orther.a[k][j];
+               }
+            }
+        }
+        return res;
+    }
+    @Override
+    public String toString(){
+        String res = "";
+        for(int i = 0 ; i < n;i++){
+            for(int j = 0 ; j < m;j++){
+                res += a[i][j] + " ";
+            }
+            res += '\n';
+        }
+        return res;
+    }
+}
+public class Myjava1{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while(t-->0){
+             int n = sc.nextInt(), m = sc.nextInt();
+             Matrix a = new Matrix(n,m);
+             a.nextMatrix(sc);
+             Matrix b = a.trans();
+             System.out.println(a.mul(b));
+        }
+    }
+}
