@@ -1,0 +1,45 @@
+package myjava1;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.math.*;
+import java.util.Scanner;
+import java.util.Vector;
+public class Myjava1{      
+      public static void main(String[] args) throws IOException{
+      Scanner sc = new Scanner(System.in);
+      Vector<String> v = new Vector<>();
+      int n = Integer.parseInt(sc.nextLine());
+      for(int i = 0 ; i < n;i++){
+          v.add(sc.nextLine());
+      }
+      boolean check = true;
+      int m = v.get(0).length();
+      String ans = v.get(0);
+      int res = Integer.MAX_VALUE;
+      for(int i = 0 ; i < m;i++){
+           int cnt = 0;
+          for(int j = 0 ; j < n;j++){
+              String cur = v.get(j);
+              for(int k = 0 ; k < m;k++){
+                  if(cur.equals(ans)){
+                     cnt += k;
+                     break;
+                  }
+                cur = cur.substring(1) + cur.substring(0, 1);
+              }
+              if(!cur.equals(ans)) check = false;
+          }
+          res = min(res, cnt);
+          ans = ans.substring(1) + ans.substring(0, 1);
+      }
+      if(check){
+          System.out.println(res);
+      }
+      else{
+          System.out.println("-1");
+      }
+    }
+ }
