@@ -1,0 +1,47 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.math.*;
+class TT implements Comparable<TT>{
+    private String mmh, tmh;
+    private long sl, dg, ck;
+
+    public TT(String mmh, String tmh, long sl, long dg, long ck) {
+        this.mmh = mmh;
+        this.tmh = tmh;
+        this.sl = sl;
+        this.dg = dg;
+        this.ck = ck;
+    }
+    public long getTT(){
+        return sl * dg - ck;
+    }
+    @Override
+    public String toString(){
+        return mmh  + " " + tmh + " " + sl + " " + dg + " " + ck + " " + getTT();
+    }
+
+    @Override
+    public int compareTo(TT o) {
+        return Long.compare(o.getTT(), getTT());
+    }
+
+}
+public class Myjava1 {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine());
+        ArrayList<TT> a = new ArrayList<>();
+        for(int i = 1 ; i <= n;i++){
+            a.add(new TT(sc.nextLine(), sc.nextLine(), Long.parseLong(sc.nextLine()), Long.parseLong(sc.nextLine()), Long.parseLong(sc.nextLine())));
+        }
+        Collections.sort(a);
+        for(TT x : a){
+            System.out.println(x);
+        }
+    }
+}
