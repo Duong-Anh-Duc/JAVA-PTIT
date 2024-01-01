@@ -1,0 +1,67 @@
+package myjava1;
+import java.util.*;
+import static java.lang.Math.*;
+import java.io.*;
+import java.lang.*;
+import java.text.*;
+import java.time.*;
+import java.math.*;
+class Point{
+    private double x, y;
+    public Point(){
+        this.x = 1;
+        this.y = 1;
+    }
+    public Point(double x, double y){
+        this.x = x;
+        this.y = y;
+    }
+    public Point(Point p){
+        p.x = x;
+        p.y = y;
+    }
+    public double getX() {
+        return x;
+    }
+    public double getY() {
+        return y;
+    }
+    public double distance(Point p){
+        return sqrt(pow(p.x - x, 2) + pow(p.y - y, 2));
+    }
+    public double distance(Point a, Point b){
+        return sqrt(pow(b.x - a.x, 2) + pow(b.y - a.y, 2));
+    }
+    public double change(Point a, Point b){
+        return a.x * b.y - a.y * b.x;
+    }
+     public double change(Point p){
+        return this.x * p.y - this.y * p.x;
+    }
+    @Override
+    public String toString(){
+       return x + " " + y;
+    }
+}
+public class Myjava1{
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+      Scanner sc = new Scanner(System.in);
+      int t = Integer.parseInt(sc.nextLine());
+      while(t-- > 0){
+          int n = sc.nextInt();
+          double res = 0;
+          ArrayList<Point> a = new ArrayList<>();
+          for(int i = 0 ; i < n;i++){
+              int x = sc.nextInt(), y = sc.nextInt();
+              a.add(new Point(x, y));
+          }
+          for(int i = 0 ; i < a.size();i++){
+              if(i != a.size() - 1){
+                  res += a.get(i).change(a.get(i + 1));
+              }
+              else res += a.get(i).change(a.get(0));
+          }
+            System.out.printf("%.3f\n", abs(res / 2));
+      }     
+    }
+}
